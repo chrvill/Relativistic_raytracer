@@ -1,2 +1,6 @@
 # Relativistic-renderer
-C++ code for rendering the relativistic effects in arbitrary spacetimes. The focus is, however, on rendering rotating black holes, described by the Kerr metric,.
+C++ code for rendering relativistic effects in arbitrary spacetimes. The focus is on rendering rotating black holes, described by the Kerr metric.
+
+## The physics
+
+A relativistic renderer is based on the [geodesic equation](https://en.wikipedia.org/wiki/Geodesics_in_general_relativity). In $n$-dimensional spacetime the geodesic equation produces $n$ coupled, second order, ordinary differential equations. Solving these equations is not any different from solving any other set of coupled differential equations - one can apply a standard numerical integration scheme. Here I've used the [Runge-Kutta-Fehlberg](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method) (RKF45) method to solve the differential equations, rather than for example 4th order Runge-Kutta or some implicit scheme. This is mostly because RKF45 has a particularly useful way of estimating the numerical error introduced by the integration scheme, and using this estimated error to choose a new appropriate step size. 
