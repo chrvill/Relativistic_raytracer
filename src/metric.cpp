@@ -1,5 +1,6 @@
 #include <Eigen/Dense>
 #include <cmath>
+#include <iostream>
 #include "metric.h"
 
 inline double Metric::g_tt(double r, double theta) {
@@ -71,6 +72,7 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
         double h_temp = 0.9*h*std::pow(tol/abs_error, 1.0/5.0);
         
         h = h_temp;
+
         /*
         if (y(1) <= 10.0 and h_temp > 0.1)
         {

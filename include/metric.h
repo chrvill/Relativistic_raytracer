@@ -19,12 +19,11 @@ break_integration specifies the conditions under which the integration should be
 The coordinate transformation functions are just the standard transformations from spherical coordinates to cartesian and vice versa. These can also be overridden in the inherited class.
 */
 
-private:
+public:
     double a = 0.0;
     double sign_a = 1.0;
 
 
-public:
     Metric(): a() {
         if (a != 0.0)
         {

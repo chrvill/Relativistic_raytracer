@@ -1,0 +1,43 @@
+{
+    "camera": {
+        "properties": {
+            "focal_length": 1,
+            "image_width": 1000,
+            "image_height": 1000,
+            "fov": 0.7853981633974483
+        },
+        "position": {
+            "r": 30.0,
+            "theta": 1.5707963267948966,
+            "phi": 1.5707963267948966
+        },
+        "up_vector": [
+            0.0,
+            0.0,
+            -1.0
+        ],
+        "camera_dir": [
+            0.0,
+            -1.0,
+            0.0
+        ],
+        "camera_local_velocity": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "metric": {
+        "name": "Kerr",
+        "parameters": {
+            "a": 0.999
+        }
+    },
+    "simulation_settings": {
+        "n_steps": 1000,
+        "initial_step_size": 0.1
+    },
+    "background": "backgrounds/starmap_2020_8k.png",
+    "output_file": "renders/kerr.png",
+    "render_disk": false
+}

@@ -93,6 +93,7 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
             Eigen::Vector3d new_pos = old_pos;
 
             y = metric.RKF45(y, h);
+            //std::cout << y(1) << "\n";
 
             affine_parameter += h;
             
@@ -182,7 +183,7 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
     }
     */
 
-    img::save("renders/blackhole.png", image);
+    //img::save(data["output_file"], image);
     return image;
 }
 
