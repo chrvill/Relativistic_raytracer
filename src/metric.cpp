@@ -1,5 +1,6 @@
 #include <Eigen/Dense>
 #include <cmath>
+#include <iostream>
 #include "metric.h"
 
 inline double Metric::g_tt(double r, double theta) {
@@ -39,6 +40,26 @@ double Metric::compute_p0(double r, double theta, double p1, double p2, double p
 Vector8d Metric::geodesic_eq_rhs(const Vector8d& y) {
     Vector8d derivatives; 
 
+    double r = y(1);
+    double theta = y(2);
+    double p0 = y(4);
+    double p1 = y(5);
+    double p2 = y(6);
+    double p3 = y(7);
+
+    double cos_theta = std::cos(theta);
+    double sin_theta = std::sin(theta);
+
+    derivatives(0) = p0;
+    derivatives(1) = p1;
+    derivatives(2) = p2;
+    derivatives(3) = p3;
+
+    derivatives(4) = 0.0;
+    derivatives(5) = r*p2*p2 + r*sin_theta*sin_theta*p3*p3;
+    derivatives(6) = -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3;
+    derivatives(7) = -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
+
     return derivatives;
 }
 
@@ -71,6 +92,7 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
         double h_temp = 0.9*h*std::pow(tol/abs_error, 1.0/5.0);
         
         h = h_temp;
+
         /*
         if (y(1) <= 10.0 and h_temp > 0.1)
         {
@@ -84,10 +106,6 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
     }
 
     return y + 16.0 / 135.0 * k1 + 6656.0 / 12825.0 * k3 + 28651.0 / 56430.0 * k4 - 9.0/50.0 * k5 + 2.0/55.0 * k6;
-}
-
-bool Metric::break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
-    return false;
 }
 
 Vector8d Metric::solve_geodesic(const Vector8d& y0, int n_steps, double h, double &affine_parameter, 

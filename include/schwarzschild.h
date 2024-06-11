@@ -17,5 +17,5 @@ public:
 
     Vector8d geodesic_eq_rhs(const Vector8d& y);
 
-    bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH, bool &inside_disk);
+    bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH);
 };

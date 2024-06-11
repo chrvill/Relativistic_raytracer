@@ -6,47 +6,102 @@
 #include <omp.h>
 #include <cstdlib>
 #include <string>
+#include "nlohmann/json.hpp" // https://github.com/nlohmann/json
 
+#include "metric.h"
+#include "schwarzschild.h"
 #include "kerr.h"
 #include "colorCalculator.h"
 #include "scene.h"
 #include "Image.h"  // https://github.com/ThibaultLejemble/img
 #include "disk.h"
 
+using json = nlohmann::json;
+
+json read_json(const std::string& scene_filename) {
+    FILE* scene_file = std::fopen(scene_filename.c_str(), "r");
+    char buffer[1024];
+    std::string file; 
+
+    // Read the file line by line
+    while (std::fgets(buffer, sizeof(buffer), scene_file)) {
+        file += buffer;
+    }
+
+    json data = json::parse(file);
+
+    return data;
+}
+
 int main() {
-    // ------ Position of the camera ------
-    double r     = 30.0; 
-    double theta = M_PI / 2.0 - 0.1; 
-    double phi   = M_PI/2; 
-    double a     = 0.0; 
+    json data = read_json("scenes/minkowski.json");
+
+    auto camera = data["camera"];
+    auto cam_pos = camera["position"];
+
+    auto metric_object = data["metric"];
+    std::string metric_name = metric_object["name"];
 
     // ------ Camera variables ------
-    double focal_length = 1;
-    constexpr size_t image_width = 1000;
-    constexpr size_t image_height = 1000;
-    constexpr size_t num_pixels = image_width * image_height;
-    double fov = M_PI / 4;
+    auto camera_properties = camera["properties"];
 
-    Eigen::Vector3d camera_pos(r, theta, phi);
-    Eigen::Vector3d camera_dir(0.0, -1.0, 0.0);
-    Eigen::Vector3d up_vector(0.0, 0.0, -1.0);
-    Eigen::Vector3d camera_v(0.0, 0.0, 0.0);   // Local 3-velocity of the camera
+    double focal_length = camera_properties["focal_length"];
+    double fov = camera_properties["fov"];
 
-    // ------ Kerr metric ------
-    Kerr metric(0.999);
+    size_t image_width = camera_properties["image_width"];
+    size_t image_height = camera_properties["image_height"];
+
+    Eigen::Vector3d camera_pos(cam_pos["r"], cam_pos["theta"], cam_pos["phi"]);
+    Eigen::Vector3d camera_dir(camera["camera_dir"][0], camera["camera_dir"][1], camera["camera_dir"][2]);
+    Eigen::Vector3d up_vector(camera["up_vector"][0], camera["up_vector"][1], camera["up_vector"][2]);
+    Eigen::Vector3d camera_v(camera["camera_local_velocity"][0], camera["camera_local_velocity"][1], camera["camera_local_velocity"][2]);   // Local 3-velocity of the camera
 
     // ------ Initializing the scene ------
     std::string cie_filename = "txtfiles/cie_interpolated.txt";
-    std::string background_image_filename = "backgrounds/starmap_2020_8k.png";
+    std::string background_image_filename = data["background"];
 
-    Disk disk(metric);
+    auto metric_parameters = metric_object["parameters"];
 
-    bool render_disk = false;
-    Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
-    scene.initialize(camera_v, Eigen::Vector3d(r, theta, phi), camera_dir, up_vector);
-    
-    // ------ Simulating the camera rays and drawing the image ------
-    img::ImageRGBf image = scene.simulate_camera_rays(1000, 1e-1, image_height, image_width);
+    auto simulation_settings = data["simulation_settings"];
+    size_t n_steps = simulation_settings["n_steps"];
+    double h0 = simulation_settings["initial_step_size"];
+    bool render_disk = data["render_disk"];
+
+    if (metric_name == "Kerr") {
+
+        double a = metric_parameters["a"];
+        Kerr metric(a);
+        Disk disk(metric);
+
+        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
+        scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
+
+        // ------ Simulating the camera rays and drawing the image ------
+        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
+        img::save(data["output_file"], image);
+    }
+    else if (metric_name == "Schwarzschild") {
+        Schwarzschild metric;
+        Disk disk(metric);
+
+        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
+        scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
+
+        // ------ Simulating the camera rays and drawing the image ------
+        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
+        img::save(data["output_file"], image);
+    }
+    else if (metric_name == "Minkowski") {
+        Metric metric;
+        Disk disk(metric);
+
+        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
+        scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
+
+        // ------ Simulating the camera rays and drawing the image ------
+        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
+        img::save(data["output_file"], image);
+    }
 
     std::cout << "\nDone.\n";
 }

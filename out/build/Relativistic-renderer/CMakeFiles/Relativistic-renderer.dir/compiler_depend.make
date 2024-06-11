@@ -1449,6 +1449,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/_timeval.h \
   C:/msys64/ucrt64/include/assert.h \
   C:/msys64/ucrt64/include/c++/13.1.0/algorithm \
+  C:/msys64/ucrt64/include/c++/13.1.0/any \
   C:/msys64/ucrt64/include/c++/13.1.0/array \
   C:/msys64/ucrt64/include/c++/13.1.0/backward/auto_ptr.h \
   C:/msys64/ucrt64/include/c++/13.1.0/backward/binders.h \
@@ -1466,6 +1467,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_string.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/char_traits.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/charconv.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/chrono.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/codecvt.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/concept_check.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/cpp_type_traits.h \
@@ -1476,20 +1478,33 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/exception.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/exception_defines.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/exception_ptr.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/forward_list.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/forward_list.tcc \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_dir.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_fwd.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_ops.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_path.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/fstream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/functexcept.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/functional_hash.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/gslice.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/gslice_array.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/hash_bytes.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/hashtable.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/hashtable_policy.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/indirect_array.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/invoke.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ios_base.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/istream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_classes.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_classes.tcc \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_conv.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets.tcc \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets_nonio.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets_nonio.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/localefwd.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/mask_array.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/memory_resource.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/memoryfwd.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/move.h \
@@ -1498,9 +1513,11 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/node_handle.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ostream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ostream_insert.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/parse_numbers.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/postypes.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/predefined_ops.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ptr_traits.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/quoted_string.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/random.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/random.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/range_access.h \
@@ -1509,6 +1526,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/shared_ptr.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/shared_ptr_atomic.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/shared_ptr_base.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/slice_array.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/specfun.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/sstream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/std_abs.h \
@@ -1527,10 +1545,12 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_numeric.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_pair.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_raw_storage_iter.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_relops.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_tempbuf.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_tree.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_uninitialized.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_vector.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/stream_iterator.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/streambuf.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/streambuf_iterator.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/string_view.tcc \
@@ -1541,6 +1561,10 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/bits/uses_allocator.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/uses_allocator_args.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/utility.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_after.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_array.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_array.tcc \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_before.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/vector.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/cassert \
   C:/msys64/ucrt64/include/c++/13.1.0/cctype \
@@ -1548,6 +1572,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/climits \
   C:/msys64/ucrt64/include/c++/13.1.0/clocale \
   C:/msys64/ucrt64/include/c++/13.1.0/cmath \
+  C:/msys64/ucrt64/include/c++/13.1.0/codecvt \
   C:/msys64/ucrt64/include/c++/13.1.0/compare \
   C:/msys64/ucrt64/include/c++/13.1.0/complex \
   C:/msys64/ucrt64/include/c++/13.1.0/cstddef \
@@ -1555,6 +1580,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/cstdio \
   C:/msys64/ucrt64/include/c++/13.1.0/cstdlib \
   C:/msys64/ucrt64/include/c++/13.1.0/cstring \
+  C:/msys64/ucrt64/include/c++/13.1.0/ctime \
   C:/msys64/ucrt64/include/c++/13.1.0/cwchar \
   C:/msys64/ucrt64/include/c++/13.1.0/cwctype \
   C:/msys64/ucrt64/include/c++/13.1.0/debug/assertions.h \
@@ -1567,14 +1593,19 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/ext/numeric_traits.h \
   C:/msys64/ucrt64/include/c++/13.1.0/ext/string_conversions.h \
   C:/msys64/ucrt64/include/c++/13.1.0/ext/type_traits.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/filesystem \
+  C:/msys64/ucrt64/include/c++/13.1.0/forward_list \
   C:/msys64/ucrt64/include/c++/13.1.0/fstream \
   C:/msys64/ucrt64/include/c++/13.1.0/functional \
   C:/msys64/ucrt64/include/c++/13.1.0/initializer_list \
+  C:/msys64/ucrt64/include/c++/13.1.0/iomanip \
   C:/msys64/ucrt64/include/c++/13.1.0/ios \
   C:/msys64/ucrt64/include/c++/13.1.0/iosfwd \
   C:/msys64/ucrt64/include/c++/13.1.0/iostream \
   C:/msys64/ucrt64/include/c++/13.1.0/istream \
+  C:/msys64/ucrt64/include/c++/13.1.0/iterator \
   C:/msys64/ucrt64/include/c++/13.1.0/limits \
+  C:/msys64/ucrt64/include/c++/13.1.0/locale \
   C:/msys64/ucrt64/include/c++/13.1.0/map \
   C:/msys64/ucrt64/include/c++/13.1.0/memory \
   C:/msys64/ucrt64/include/c++/13.1.0/new \
@@ -1586,6 +1617,7 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/pstl/glue_numeric_defs.h \
   C:/msys64/ucrt64/include/c++/13.1.0/pstl/pstl_config.h \
   C:/msys64/ucrt64/include/c++/13.1.0/random \
+  C:/msys64/ucrt64/include/c++/13.1.0/ratio \
   C:/msys64/ucrt64/include/c++/13.1.0/sstream \
   C:/msys64/ucrt64/include/c++/13.1.0/stdexcept \
   C:/msys64/ucrt64/include/c++/13.1.0/stdlib.h \
@@ -1609,7 +1641,10 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/type_traits \
   C:/msys64/ucrt64/include/c++/13.1.0/typeinfo \
   C:/msys64/ucrt64/include/c++/13.1.0/unordered_map \
+  C:/msys64/ucrt64/include/c++/13.1.0/utility \
+  C:/msys64/ucrt64/include/c++/13.1.0/valarray \
   C:/msys64/ucrt64/include/c++/13.1.0/vector \
+  C:/msys64/ucrt64/include/c++/13.1.0/version \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
@@ -1622,8 +1657,10 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/error_constants.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/gthr-default.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/gthr.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/messages_members.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/opt_random.h \
   C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/time_members.h \
   C:/msys64/ucrt64/include/corecrt.h \
   C:/msys64/ucrt64/include/corecrt_startup.h \
   C:/msys64/ucrt64/include/corecrt_stdio_config.h \
@@ -1949,8 +1986,54 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Phy
   D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
   D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/kerr.h \
   D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/metric.h \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/adl_serializer.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/byte_container_with_subtype.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/abi_macros.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/from_json.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/to_chars.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/to_json.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/exceptions.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/hash.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/binary_reader.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/input_adapters.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/json_sax.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/lexer.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/parser.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/position_t.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/internal_iterator.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iter_impl.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iterator_traits.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_custom_base_class.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_pointer.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_ref.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/macro_scope.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/macro_unscope.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/call_std/begin.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/call_std/end.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/cpp_future.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/detected.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/identity_tag.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/is_sax.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/std_fs.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/type_traits.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/void_t.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/binary_writer.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/output_adapters.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/serializer.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/string_concat.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/string_escape.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/value_t.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/json.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/json_fwd.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/ordered_map.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley.hpp \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
   D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h \
-  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h \
+  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/schwarzschild.h
 
 CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/metric.cpp \
   C:/msys64/ucrt64/include/_mingw.h \
@@ -2064,6 +2147,7 @@ CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: D:/Documents/Programs/P
   C:/msys64/ucrt64/include/c++/13.1.0/initializer_list \
   C:/msys64/ucrt64/include/c++/13.1.0/ios \
   C:/msys64/ucrt64/include/c++/13.1.0/iosfwd \
+  C:/msys64/ucrt64/include/c++/13.1.0/iostream \
   C:/msys64/ucrt64/include/c++/13.1.0/istream \
   C:/msys64/ucrt64/include/c++/13.1.0/limits \
   C:/msys64/ucrt64/include/c++/13.1.0/new \
@@ -3405,6 +3489,8 @@ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/colorCalculat
 
 C:/msys64/ucrt64/include/_mingw_secapi.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_ops.h:
+
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/error_constants.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Geometry/Rotation2D.h:
@@ -3432,6 +3518,8 @@ C:/msys64/ucrt64/include/_mingw_stat64.h:
 C:/msys64/ucrt64/include/c++/13.1.0/backward/binders.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/new_allocator.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/abi_macros.hpp:
 
 C:/msys64/ucrt64/include/c++/13.1.0/algorithm:
 
@@ -3467,6 +3555,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/streambuf.tcc:
 
 C:/msys64/ucrt64/include/c++/13.1.0/backward/auto_ptr.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_before.h:
+
 C:/msys64/ucrt64/include/c++/13.1.0/bit:
 
 C:/msys64/ucrt64/include/sec_api/stdlib_s.h:
@@ -3489,6 +3579,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/hashtable.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/memoryfwd.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/slice_array.h:
+
 C:/msys64/ucrt64/include/c++/13.1.0/bits/atomic_lockfree_defines.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Geometry/ParametrizedLine.h:
@@ -3507,6 +3599,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vnnivlintrin.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/ext/alloc_traits.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/internal_iterator.hpp:
+
 C:/msys64/ucrt64/include/c++/13.1.0/bits/ptr_traits.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/unique_ptr.h:
@@ -3524,6 +3618,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_ios.tcc:
 C:/msys64/ucrt64/include/c++/13.1.0/memory:
 
 C:/msys64/ucrt64/include/c++/13.1.0/tr1/legendre_function.tcc:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/type_traits.hpp:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_string.h:
 
@@ -3575,6 +3671,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/exception_defines.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/cmpccxaddintrin.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/iterator:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512dqintrin.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/predefined_ops.h:
@@ -3585,9 +3683,9 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/hash_bytes.h:
 
 D:/Documents/Programs/Eigen/unsupported/Eigen/src/Splines/SplineFitting.h:
 
-C:/msys64/ucrt64/include/c++/13.1.0/bits/hashtable_policy.h:
-
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/hashtable_policy.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_uninitialized.h:
 
@@ -3600,6 +3698,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_classes.h:
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++config.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/plugins/CommonCwiseBinaryOps.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/locale:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/DenseCoeffsBase.h:
 
@@ -3705,6 +3805,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_vector.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/iosfwd:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iterator_traits.hpp:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsaveintrin.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/streambuf_iterator.h:
@@ -3718,6 +3820,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/iostream:
 C:/msys64/ucrt64/include/c++/13.1.0/bits/uniform_int_dist.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/shaintrin.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_dir.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/unordered_map.h:
 
@@ -3742,6 +3846,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/cctype:
 D:/Documents/Programs/Eigen/Eigen/src/Core/ReturnByValue.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/arch/AVX/PacketMath.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/binary_reader.hpp:
 
 C:/msys64/ucrt64/include/c++/13.1.0/cerrno:
 
@@ -3869,6 +3975,8 @@ C:/msys64/ucrt64/include/c++/13.1.0/tr1/gamma.tcc:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/EigenBase.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/ordered_map.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/util/ForwardDeclarations.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h:
@@ -3917,6 +4025,10 @@ C:/msys64/ucrt64/include/stdint.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Geometry/Umeyama.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/from_json.hpp:
+
+C:/msys64/ucrt64/include/c++/13.1.0/version:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/PlainObjectBase.h:
 
 C:/msys64/ucrt64/include/corecrt.h:
@@ -3938,6 +4050,8 @@ C:/msys64/ucrt64/include/errno.h:
 C:/msys64/ucrt64/include/io.h:
 
 C:/msys64/ucrt64/include/limits.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/valarray:
 
 C:/msys64/ucrt64/include/locale.h:
 
@@ -3963,11 +4077,15 @@ C:/msys64/ucrt64/include/pthread_unistd.h:
 
 C:/msys64/ucrt64/include/sdks/_mingw_ddk.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets_nonio.tcc:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pconfigintrin.h:
 
 C:/msys64/ucrt64/include/sec_api/stdio_s.h:
 
 C:/msys64/ucrt64/include/sec_api/string_s.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_after.h:
 
 C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h:
 
@@ -3981,6 +4099,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/fxsrintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/bmiintrin.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/identity_tag.hpp:
+
 C:/msys64/ucrt64/include/stddef.h:
 
 C:/msys64/ucrt64/include/stdio.h:
@@ -3988,6 +4108,8 @@ C:/msys64/ucrt64/include/stdio.h:
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vbmi2intrin.h:
 
 C:/msys64/ucrt64/include/string.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/json.hpp:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/raointintrin.h:
 
@@ -4157,6 +4279,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/movdirintrin.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/random.tcc:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/position_t.hpp:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/nmmintrin.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/omp.h:
@@ -4193,6 +4317,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/Transpositions.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/tsxldtrkintrin.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/time_members.h:
+
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/uintrintrin.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/EigenSolver.h:
@@ -4215,6 +4341,8 @@ D:/Documents/Programs/Eigen/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xtestintrin.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_pointer.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/Geometry:
 
 D:/Documents/Programs/Eigen/Eigen/Jacobi:
@@ -4235,11 +4363,15 @@ C:/msys64/ucrt64/include/c++/13.1.0/bits/random.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/binary_writer.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/BandMatrix.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/main.cpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/Block.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley.hpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/BooleanRedux.h:
 
@@ -4279,6 +4411,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/MathFunctions.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/MathFunctionsImpl.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/parse_numbers.h:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/arch/CUDA/Complex.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/Tridiagonalization.h:
@@ -4290,6 +4424,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/MatrixBase.h:
 D:/Documents/Programs/Eigen/Eigen/src/Core/NumTraits.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/Product.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/serializer.hpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/ProductEvaluators.h:
 
@@ -4307,6 +4443,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/SelfCwiseBinaryOp.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/SolveTriangular.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/json_sax.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/StableNorm.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/Swap.h:
@@ -4314,6 +4452,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/Swap.h:
 D:/Documents/Programs/Eigen/Eigen/src/Core/TriangularMatrix.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/VectorBlock.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/std_fs.hpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/VectorwiseOp.h:
 
@@ -4324,6 +4464,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/arch/AVX/Complex.h:
 D:/Documents/Programs/Eigen/Eigen/src/Core/arch/AVX/MathFunctions.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/Image.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/stream_iterator.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/arch/AVX/TypeCasting.h:
 
@@ -4351,6 +4493,8 @@ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/colorCalc
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/products/SelfadjointMatrixMatrix.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/parser.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/src/Core/products/SelfadjointRank2Update.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/products/TriangularSolverMatrix.h:
@@ -4364,6 +4508,8 @@ D:/Documents/Programs/Eigen/Eigen/src/Core/util/Macros.h:
 D:/Documents/Programs/Eigen/Eigen/src/Core/util/Memory.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/to_chars.hpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/Core/util/Meta.h:
 
@@ -4399,11 +4545,15 @@ D:/Documents/Programs/Eigen/Eigen/src/QR/ColPivHouseholderQR.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
 
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/adl_serializer.hpp:
+
 D:/Documents/Programs/Eigen/Eigen/src/QR/FullPivHouseholderQR.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/misc/Image.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/misc/RealSvd2x2.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_relops.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/plugins/ArrayCwiseBinaryOps.h:
 
@@ -4415,21 +4565,121 @@ D:/Documents/Programs/Eigen/unsupported/Eigen/Splines:
 
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/opt_random.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/codecvt:
+
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/kerr.cpp:
 
+C:/msys64/ucrt64/include/c++/13.1.0/any:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/chrono.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iteration_proxy.hpp:
+
 C:/msys64/ucrt64/include/c++/13.1.0/bits/codecvt.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/bits/fstream.tcc:
 
+C:/msys64/ucrt64/include/c++/13.1.0/bits/forward_list.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/forward_list.tcc:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_fwd.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/fs_path.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/gslice.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/gslice_array.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/indirect_array.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_conv.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/locale_facets_nonio.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/mask_array.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/quoted_string.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_array.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/valarray_array.tcc:
+
+C:/msys64/ucrt64/include/c++/13.1.0/ctime:
+
+C:/msys64/ucrt64/include/c++/13.1.0/filesystem:
+
+C:/msys64/ucrt64/include/c++/13.1.0/forward_list:
+
 C:/msys64/ucrt64/include/c++/13.1.0/fstream:
+
+C:/msys64/ucrt64/include/c++/13.1.0/iomanip:
+
+C:/msys64/ucrt64/include/c++/13.1.0/ratio:
+
+C:/msys64/ucrt64/include/c++/13.1.0/utility:
 
 C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++io.h:
 
-D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h:
+C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/messages_members.h:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/byte_container_with_subtype.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/conversions/to_json.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/exceptions.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/hash.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/input_adapters.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/input/lexer.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/iter_impl.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/iterators/primitive_iterator.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_custom_base_class.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/json_ref.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/macro_scope.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/macro_unscope.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/call_std/begin.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/call_std/end.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/cpp_future.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/detected.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/is_sax.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/meta/void_t.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/output/output_adapters.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/string_concat.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/string_escape.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/detail/value_t.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/json_fwd.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
+
+D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/schwarzschild.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/metric.cpp:
 
@@ -4438,5 +4688,3 @@ C:/msys64/ucrt64/include/c++/13.1.0/fenv.h:
 C:/msys64/ucrt64/include/fenv.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/schwarzschild.cpp:
-
-D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/schwarzschild.h:
