@@ -53,7 +53,11 @@ public:
     virtual Vector8d RKF45(const Vector8d& y, double &h, double tol = 1e-5);
 
     // Conditions for breaking the integration
-    virtual bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH);
+    virtual bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
+        outside_celestial_sphere = y(1) >= 100.0;
+
+        return outside_celestial_sphere;
+    }
 
     // Solve the geodesic equation for a given set of initial conditions
     Vector8d solve_geodesic(const Vector8d& y0, int n_steps, double h, double &affine_parameter, 

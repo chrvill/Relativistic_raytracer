@@ -30,4 +30,6 @@ public:
     Eigen::Vector3d pos_to_cartesian(double r, double theta, double phi);
 
     Eigen::Matrix3d transformationMatrix(double r, double theta, double phi);
+
+    
 };

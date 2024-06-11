@@ -34,7 +34,7 @@ json read_json(const std::string& scene_filename) {
 }
 
 int main() {
-    json data = read_json("scenes/kerr.json");
+    json data = read_json("scenes/minkowski.json");
 
     auto camera = data["camera"];
     auto cam_pos = camera["position"];
