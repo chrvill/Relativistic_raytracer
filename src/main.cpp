@@ -54,8 +54,8 @@ int main() {
     Eigen::Vector3d camera_pos(cam_pos["r"], cam_pos["theta"], cam_pos["phi"]);
     Eigen::Vector3d camera_dir(camera["camera_dir"][0], camera["camera_dir"][1], camera["camera_dir"][2]);
     Eigen::Vector3d up_vector(camera["up_vector"][0], camera["up_vector"][1], camera["up_vector"][2]);
-    Eigen::Vector3d camera_v(camera["camera_local_velocity"][0], camera["camera_local_velocity"][1], camera["camera_local_velocity"][2]);   // Local 3-velocity of the camera
-
+    Eigen::Vector3d camera_v(camera["camera_velocity"][0], camera["camera_velocity"][1], camera["camera_velocity"][2]);   // Local 3-velocity of the camera
+    
     // ------ Initializing the scene ------
     std::string cie_filename = "txtfiles/cie_interpolated.txt";
     std::string background_image_filename = data["background"];

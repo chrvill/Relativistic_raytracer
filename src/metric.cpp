@@ -225,25 +225,38 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
 
     Eigen::Matrix4d L;
 
-    L(0, 0) = gamma;
-    L(0, 1) = -gamma*v(0);
-    L(0, 2) = -gamma*v(1);
-    L(0, 3) = -gamma*v(2);
+    if (beta > 0.0) {
+        L(0, 0) = gamma;
+        L(0, 1) = -gamma*v(0);
+        L(0, 2) = -gamma*v(1);
+        L(0, 3) = -gamma*v(2);
 
-    L(1, 0) = -gamma*v(0);
-    L(1, 1) = 1 + (gamma - 1)*(v(0)*v(0))/(beta*beta);
-    L(1, 2) = (gamma - 1)*(v(0)*v(1))/(beta*beta);
-    L(1, 3) = (gamma - 1)*(v(0)*v(2))/(beta*beta);
+        L(1, 0) = -gamma*v(0);
+        L(1, 1) = 1 + (gamma - 1)*(v(0)*v(0))/(beta*beta);
+        L(1, 2) = (gamma - 1)*(v(0)*v(1))/(beta*beta);
+        L(1, 3) = (gamma - 1)*(v(0)*v(2))/(beta*beta);
 
-    L(2, 0) = -gamma*v(1);
-    L(2, 1) = (gamma - 1)*(v(1)*v(0))/(beta*beta);
-    L(2, 2) = 1 + (gamma - 1)*(v(1)*v(1))/(beta*beta);
-    L(2, 3) = (gamma - 1)*(v(1)*v(2))/(beta*beta);
+        L(2, 0) = -gamma*v(1);
+        L(2, 1) = (gamma - 1)*(v(1)*v(0))/(beta*beta);
+        L(2, 2) = 1 + (gamma - 1)*(v(1)*v(1))/(beta*beta);
+        L(2, 3) = (gamma - 1)*(v(1)*v(2))/(beta*beta);
 
-    L(3, 0) = -gamma*v(2);
-    L(3, 1) = (gamma - 1)*(v(2)*v(0))/(beta*beta);
-    L(3, 2) = (gamma - 1)*(v(2)*v(1))/(beta*beta);
-    L(3, 3) = 1 + (gamma - 1)*(v(2)*v(2))/(beta*beta);
-
+        L(3, 0) = -gamma*v(2);
+        L(3, 1) = (gamma - 1)*(v(2)*v(0))/(beta*beta);
+        L(3, 2) = (gamma - 1)*(v(2)*v(1))/(beta*beta);
+        L(3, 3) = 1 + (gamma - 1)*(v(2)*v(2))/(beta*beta);
+    }
+    else {
+        L = Eigen::Matrix4d::Identity();
+    }
+    std::cout << L << "\n";
     return L;
+}
+
+Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
+    double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
+
+    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
+
+    return v_cartesian/gamma;
 }

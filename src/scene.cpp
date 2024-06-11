@@ -61,14 +61,30 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
 
     double max_value = 0.0;
 
+    Eigen::Vector3d local_camera_velocity = metric.compute_local_cartesian_velocity(Eigen::Vector3d(camera_u(1), camera_u(2), camera_u(3)), r, theta);
+
+    Eigen::Matrix4d lorentz = metric.lorentz_transformation(local_camera_velocity);
+
     #pragma omp parallel for
     for (int j = 0; j < num_pixels; ++j)
     {   
         Vector8d y0;
-        Eigen::Vector3d ray = metric.transform_cartesian_vec(initial_rays.row(j), r, theta, phi);
+        Eigen::Vector3d cartesian_ray = initial_rays.row(j);
+        Eigen::Vector3d ray_init = metric.transform_cartesian_vec(cartesian_ray, r, theta, phi);
+
+        double ray0 = metric.compute_p0(r, theta, ray_init(0), ray_init(1), ray_init(2));
+
+        //double ray0 = cartesian_ray.norm();
+
+        Eigen::Vector4d temp_4vec = Eigen::Vector4d(ray0, cartesian_ray(0), cartesian_ray(1), cartesian_ray(2));
+
+        Eigen::Vector4d ray_prime = lorentz * temp_4vec;
+        //Eigen::Vector4d ray_prime(0, 0, 0, 0);
+
+        Eigen::Vector3d ray = metric.transform_cartesian_vec(Eigen::Vector3d(ray_prime(1), ray_prime(2), ray_prime(3)), r, theta, phi);
 
         y0 << 0, r, theta, phi, 0, ray(0), ray(1), ray(2);
-    
+
         double p0 = metric.compute_p0(y0(1), y0(2), y0(5), y0(6), y0(7));
 
         y0(4) = p0;

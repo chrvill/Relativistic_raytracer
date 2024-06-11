@@ -81,4 +81,6 @@ public:
     double orbital_velocity(const double r);
 
     Eigen::Matrix4d lorentz_transformation(const Eigen::Vector3d& v);
+
+    Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
 };
