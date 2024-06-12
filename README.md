@@ -17,7 +17,7 @@ $$
 \end{equation}
 $$
 
-for $\mu \in \left\{0, 1, 2, 3\right\}$. 
+for $\mu = 0, 1, 2, 3$. 
 
 #### The numerical integration scheme
 
