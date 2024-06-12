@@ -2,6 +2,19 @@
 #include <cmath>
 #include "kerr.h"
 
+inline double Kerr::Sigma(double r, double theta) {
+    return r * r + a * a * std::cos(theta) * std::cos(theta);
+}
+
+inline double Kerr::Delta(double r, double theta) {
+    return r * r - 2 * r + a * a;
+}
+
+inline double Kerr::Lambda(double r, double theta) {
+    return (r * r + a * a) * (r * r + a * a) - a * a * Delta(r, theta) * std::sin(theta) * std::sin(theta);
+
+}
+
 inline double Kerr::g_tt(double r, double theta) {
     double sigma = r * r + a * a * std::cos(theta) * std::cos(theta);
     return -(1 - 2 * r / sigma);
@@ -154,4 +167,35 @@ Eigen::Matrix3d Kerr::transformationMatrix(double r, double theta, double phi) {
     M(2, 2) = 0;
 
     return M;
+}
+
+Eigen::Vector3d Kerr::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
+    double v0 = compute_p0(r, theta, v(0), v(1), v(2), -1);
+    std::cout << "v0\t" << v0 << std::endl;
+
+    double sigma = Sigma(r, theta);
+    double delta = Delta(r, theta);
+    double lambda = Lambda(r, theta);
+
+    double u0 = std::sqrt(delta*sigma/lambda)*v0;
+    double u1 = std::sqrt(sigma/delta)*v(0);
+    double u2 = std::sqrt(sigma)*v(1);
+    double u3 = -2.0*a*r*std::sin(theta)/std::sqrt(lambda*sigma)*v0 + std::sin(theta)*std::sqrt(lambda/sigma)*v(2);
+
+    Eigen::Vector3d v_BL(u1/u0, u2/u0, u3/u0);
+
+    return transform_vec_to_cartesian(v_BL, r, theta, 0.0);
+}
+
+Eigen::Vector4d Kerr::transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi) {
+    double sigma = Sigma(r, theta);
+    double delta = Delta(r, theta);
+    double lambda = Lambda(r, theta);
+
+    double p0 = std::sqrt(lambda/(delta*sigma))*vec(0) + 2.0*a*r/std::sqrt(lambda*sigma*delta)*vec(3);
+    double p1 = std::sqrt(delta/sigma)*vec(1);
+    double p2 = std::sqrt(1.0/sigma)*vec(2);
+    double p3 = std::sqrt(sigma/lambda)*1.0/std::sin(theta)*vec(3);
+
+    return Eigen::Vector4d(p0, p1, p2, p3);
 }

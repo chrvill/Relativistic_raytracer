@@ -82,5 +82,7 @@ public:
 
     Eigen::Matrix4d lorentz_transformation(const Eigen::Vector3d& v);
 
-    Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
+    virtual Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
+
+    virtual Eigen::Vector4d transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi);
 };

@@ -163,9 +163,9 @@ Eigen::Vector3d Metric::transform_cartesian_vec(const Eigen::Vector3d& vec, doub
 
     // The transformation matrix above assumes the basis vectors are orthonormal, but the Christoffel symbols used in the geodesic equation
     // are derived using so-called coordinate basis vectors, which are not orthonormal. To correct for this, we need to divide by the square root of the metric components.
-    new_vec(0) *= 1.0/std::sqrt(g_rr(r, theta));
-    new_vec(1) *= 1.0/std::sqrt(g_thth(r, theta));
-    new_vec(2) *= 1.0/std::sqrt(g_phph(r, theta));
+    //new_vec(0) *= 1.0/std::sqrt(g_rr(r, theta));
+    //new_vec(1) *= 1.0/std::sqrt(g_thth(r, theta));
+    //new_vec(2) *= 1.0/std::sqrt(g_phph(r, theta));
 
     return new_vec;
 }
@@ -175,9 +175,9 @@ Eigen::Vector3d Metric::transform_vec_to_cartesian(const Eigen::Vector3d& vec, d
 
     Eigen::Vector3d new_vec(vec(0), vec(1), vec(2));
 
-    new_vec(0) *= std::sqrt(g_rr(r, theta));
-    new_vec(1) *= std::sqrt(g_thth(r, theta));
-    new_vec(2) *= std::sqrt(g_phph(r, theta));
+    //new_vec(0) *= std::sqrt(g_rr(r, theta));
+    //new_vec(1) *= std::sqrt(g_thth(r, theta));
+    //new_vec(2) *= std::sqrt(g_phph(r, theta));
 
     return M.transpose() * new_vec;
 
@@ -249,14 +249,29 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
     else {
         L = Eigen::Matrix4d::Identity();
     }
-    std::cout << L << "\n";
+    //std::cout << L << "\n";
     return L;
 }
 
 Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
     double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
 
-    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
+    double u1 = v(0);
+    double u2 = r*v(1);
+    double u3 = r*std::sin(theta)*v(2);
+
+    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(Eigen::Vector3d(u1, u2, u3), r, theta, 0.0);
 
     return v_cartesian/gamma;
+}
+
+Eigen::Vector4d Metric::transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi) {
+    Eigen::Vector4d vec_global;
+
+    vec_global(0) = vec(0);
+    vec_global(1) = vec(1);
+    vec_global(2) = vec(2)/r;
+    vec_global(3) = vec(3)/(r*std::sin(theta));
+
+    return vec_global;
 }
