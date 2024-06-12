@@ -6,6 +6,7 @@
 #include <omp.h>
 #include <cstdlib>
 #include <string>
+#include <chrono>
 #include "nlohmann/json.hpp" // https://github.com/nlohmann/json
 
 #include "metric.h"
@@ -34,7 +35,7 @@ json read_json(const std::string& scene_filename) {
 }
 
 int main() {
-    json data = read_json("scenes/minkowski.json");
+    json data = read_json("scenes/kerr.json");
 
     auto camera = data["camera"];
     auto cam_pos = camera["position"];
@@ -66,6 +67,8 @@ int main() {
     size_t n_steps = simulation_settings["n_steps"];
     double h0 = simulation_settings["initial_step_size"];
     bool render_disk = data["render_disk"];
+
+    auto start = std::chrono::high_resolution_clock::now();
 
     if (metric_name == "Kerr") {
 
@@ -103,5 +106,12 @@ int main() {
         img::save(data["output_file"], image);
     }
 
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> render_time = end - start;
+    std::cout << "Rendering time: " << render_time.count() << " s\n";
+
     std::cout << "\nDone.\n";
+
+    return 0;
 }

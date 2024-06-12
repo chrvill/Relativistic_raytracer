@@ -72,37 +72,19 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
     {   
         Vector8d y0;
         Eigen::Vector3d cartesian_ray = initial_rays.row(j);
-
-        //Eigen::Vector3d ray_init = metric.transform_cartesian_vec(cartesian_ray, r, theta, phi);
-        //ray_init(2) /= r;
-        //ray_init(3) /= (r*std::sin(theta));
-        //double ray0 = metric.compute_p0(r, theta, ray_init(0), ray_init(1), ray_init(2));
-        //double ray0 = std::sqrt(cartesian_ray.dot(cartesian_ray));
-        //std::cout << ray0 << "\n";
-    
         double ray0 = cartesian_ray.norm();
-
-        //std::cout << ray0 << "\n";
 
         Eigen::Vector4d ray_4vec = Eigen::Vector4d(ray0, cartesian_ray(0), cartesian_ray(1), cartesian_ray(2));
 
         Eigen::Vector4d ray_prime = lorentz * ray_4vec;
-        //Eigen::Vector4d ray_prime(0, 0, 0, 0);
 
         Eigen::Vector3d ray_local = metric.transform_cartesian_vec(Eigen::Vector3d(ray_prime(1), ray_prime(2), ray_prime(3)), r, theta, phi);
 
-        //double p0 = metric.compute_p0(r, theta, ray_local(0), ray_local(1), ray_local(2));
-        
-
         Eigen::Vector4d ray = metric.transform_vec_to_global(Eigen::Vector4d(ray_prime(0), ray_local(0), ray_local(1), ray_local(2)), r, theta, phi);
-        //std::cout << ray << "\n\n";
+
         y0 << 0, r, theta, phi, ray(0), ray(1), ray(2), ray(3);
 
         double p0 = metric.compute_p0(r, theta, ray(1), ray(2), ray(3));
-        //double p0 = ray(0);
-        //double p0 = ray(0);
-        //std::cout << ray(0) << "\n";
-        //std::cout << p0 << "\n";
 
         y0(4) = p0;
         double affine_parameter = 0.0;
