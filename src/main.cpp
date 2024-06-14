@@ -54,7 +54,7 @@ std::unique_ptr<Metric> create_metric(const std::string& metric_name, const json
 int main() {
     omp_set_num_threads(8);
 
-    json data = read_json("scenes/kerr.json");
+    json data = read_json("scenes/schwarzschild.json");
 
     auto camera = data["camera"];
     auto cam_pos = camera["position"];
