@@ -32,15 +32,25 @@ public:
     } 
 
     // Components of the metric tensor
-    virtual inline double g_tt(double r, double theta);
+    virtual inline double g_tt(double r, double theta) {
+        return -1.0;
+    }
 
-    virtual inline double g_tph(double r, double theta);
+    virtual inline double g_tph(double r, double theta) {
+        return 0.0;
+    }
 
-    virtual inline double g_rr(double r, double theta);
+    virtual inline double g_rr(double r, double theta) {
+        return 1.0;
+    }
 
-    virtual inline double g_thth(double r, double theta);
+    virtual inline double g_thth(double r, double theta) {
+        return r*r;
+    }
 
-    virtual inline double g_phph(double r, double theta);
+    virtual inline double g_phph(double r, double theta) {
+        return r*r*std::sin(theta)*std::sin(theta);
+    }
 
     // Computing the initial value of p^t = dx^t/dlambda. 
     // mu = p^\mu p_\mu

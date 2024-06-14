@@ -3,26 +3,6 @@
 #include <iostream>
 #include "metric.h"
 
-inline double Metric::g_tt(double r, double theta) {
-    return -1.0;
-}
-
-inline double Metric::g_tph(double r, double theta) {
-    return 0.0;
-}
-
-inline double Metric::g_rr(double r, double theta) {
-    return 1.0;
-}
-
-inline double Metric::g_thth(double r, double theta) {
-    return r*r;
-}
-
-inline double Metric::g_phph(double r, double theta) {
-    return r*r*std::sin(theta)*std::sin(theta);
-}
-
 double Metric::compute_p0(double r, double theta, double p1, double p2, double p3, double mu) {
     double g_tt   = this->g_tt(r, theta);
     double g_tph  = this->g_tph(r, theta);
@@ -175,9 +155,9 @@ Eigen::Vector3d Metric::transform_vec_to_cartesian(const Eigen::Vector3d& vec, d
 
     Eigen::Vector3d new_vec(vec(0), vec(1), vec(2));
 
-    //new_vec(0) *= std::sqrt(g_rr(r, theta));
-    //new_vec(1) *= std::sqrt(g_thth(r, theta));
-    //new_vec(2) *= std::sqrt(g_phph(r, theta));
+    new_vec(0) *= std::sqrt(g_rr(r, theta));
+    new_vec(1) *= std::sqrt(g_thth(r, theta));
+    new_vec(2) *= std::sqrt(g_phph(r, theta));
 
     return M.transpose() * new_vec;
 
@@ -249,18 +229,13 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
     else {
         L = Eigen::Matrix4d::Identity();
     }
-    //std::cout << L << "\n";
     return L;
 }
 
 Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
     double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
 
-    double u1 = v(0);
-    double u2 = r*v(1);
-    double u3 = r*std::sin(theta)*v(2);
-
-    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(Eigen::Vector3d(u1, u2, u3), r, theta, 0.0);
+    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
 
     return v_cartesian/gamma;
 }
@@ -269,9 +244,9 @@ Eigen::Vector4d Metric::transform_vec_to_global(const Eigen::Vector4d& vec, doub
     Eigen::Vector4d vec_global;
 
     vec_global(0) = vec(0);
-    vec_global(1) = vec(1);
-    vec_global(2) = vec(2)/r;
-    vec_global(3) = vec(3)/(r*std::sin(theta));
+    vec_global(1) = vec(1)/std::sqrt(g_rr(r, theta));
+    vec_global(2) = vec(2)/std::sqrt(g_thth(r, theta));
+    vec_global(3) = vec(3)/std::sqrt(g_phph(r, theta));
 
     return vec_global;
 }

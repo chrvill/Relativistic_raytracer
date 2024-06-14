@@ -15,6 +15,14 @@ public:
     
     inline double g_rr(double r, double theta);
 
+    /*
+    inline double g_thth(double r, double theta);
+
+    inline double g_phph(double r, double theta);
+
+    inline double g_tph(double r, double theta);
+    */
+
     Vector8d geodesic_eq_rhs(const Vector8d& y);
 
     bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH);

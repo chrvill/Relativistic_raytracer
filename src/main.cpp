@@ -35,7 +35,7 @@ json read_json(const std::string& scene_filename) {
 }
 
 int main() {
-    json data = read_json("scenes/kerr.json");
+    json data = read_json("scenes/minkowski.json");
 
     auto camera = data["camera"];
     auto cam_pos = camera["position"];
@@ -74,6 +74,7 @@ int main() {
 
         double a = metric_parameters["a"];
         Kerr metric(a);
+        std::cout << a << "\n";
         Disk disk(metric);
 
         Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
@@ -97,7 +98,7 @@ int main() {
     else if (metric_name == "Minkowski") {
         Metric metric;
         Disk disk(metric);
-
+        
         Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
         scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
 

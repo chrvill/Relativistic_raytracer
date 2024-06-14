@@ -10,17 +10,19 @@ inline double Schwarzschild::g_rr(double r, double theta) {
     return 1 / (1 - 2.0 / r);
 }
 
-inline double Metric::g_tph(double r, double theta) {
+/*
+inline double Schwarzschild::g_tph(double r, double theta) {
     return 0.0;
 }
 
-inline double Metric::g_thth(double r, double theta) {
+inline double Schwarzschild::g_thth(double r, double theta) {
     return r*r;
 }
 
-inline double Metric::g_phph(double r, double theta) {
+inline double Schwarzschild::g_phph(double r, double theta) {
     return r*r*std::sin(theta)*std::sin(theta);
 }
+*/
 
 Vector8d Schwarzschild::geodesic_eq_rhs(const Vector8d& y) {
     Eigen::Matrix<double, 8, 1> derivatives;
