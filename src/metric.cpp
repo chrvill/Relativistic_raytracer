@@ -3,26 +3,6 @@
 #include <iostream>
 #include "metric.h"
 
-inline double Metric::g_tt(double r, double theta) {
-    return -1.0;
-}
-
-inline double Metric::g_tph(double r, double theta) {
-    return 0.0;
-}
-
-inline double Metric::g_rr(double r, double theta) {
-    return 1.0;
-}
-
-inline double Metric::g_thth(double r, double theta) {
-    return r*r;
-}
-
-inline double Metric::g_phph(double r, double theta) {
-    return r*r*std::sin(theta)*std::sin(theta);
-}
-
 double Metric::compute_p0(double r, double theta, double p1, double p2, double p3, double mu) {
     double g_tt   = this->g_tt(r, theta);
     double g_tph  = this->g_tph(r, theta);
@@ -163,9 +143,9 @@ Eigen::Vector3d Metric::transform_cartesian_vec(const Eigen::Vector3d& vec, doub
 
     // The transformation matrix above assumes the basis vectors are orthonormal, but the Christoffel symbols used in the geodesic equation
     // are derived using so-called coordinate basis vectors, which are not orthonormal. To correct for this, we need to divide by the square root of the metric components.
-    new_vec(0) *= 1.0/std::sqrt(g_rr(r, theta));
-    new_vec(1) *= 1.0/std::sqrt(g_thth(r, theta));
-    new_vec(2) *= 1.0/std::sqrt(g_phph(r, theta));
+    //new_vec(0) *= 1.0/std::sqrt(g_rr(r, theta));
+    //new_vec(1) *= 1.0/std::sqrt(g_thth(r, theta));
+    //new_vec(2) *= 1.0/std::sqrt(g_phph(r, theta));
 
     return new_vec;
 }
@@ -225,25 +205,48 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
 
     Eigen::Matrix4d L;
 
-    L(0, 0) = gamma;
-    L(0, 1) = -gamma*v(0);
-    L(0, 2) = -gamma*v(1);
-    L(0, 3) = -gamma*v(2);
+    if (beta > 0.0) {
+        L(0, 0) = gamma;
+        L(0, 1) = -gamma*v(0);
+        L(0, 2) = -gamma*v(1);
+        L(0, 3) = -gamma*v(2);
 
-    L(1, 0) = -gamma*v(0);
-    L(1, 1) = 1 + (gamma - 1)*(v(0)*v(0))/(beta*beta);
-    L(1, 2) = (gamma - 1)*(v(0)*v(1))/(beta*beta);
-    L(1, 3) = (gamma - 1)*(v(0)*v(2))/(beta*beta);
+        L(1, 0) = -gamma*v(0);
+        L(1, 1) = 1 + (gamma - 1)*(v(0)*v(0))/(beta*beta);
+        L(1, 2) = (gamma - 1)*(v(0)*v(1))/(beta*beta);
+        L(1, 3) = (gamma - 1)*(v(0)*v(2))/(beta*beta);
 
-    L(2, 0) = -gamma*v(1);
-    L(2, 1) = (gamma - 1)*(v(1)*v(0))/(beta*beta);
-    L(2, 2) = 1 + (gamma - 1)*(v(1)*v(1))/(beta*beta);
-    L(2, 3) = (gamma - 1)*(v(1)*v(2))/(beta*beta);
+        L(2, 0) = -gamma*v(1);
+        L(2, 1) = (gamma - 1)*(v(1)*v(0))/(beta*beta);
+        L(2, 2) = 1 + (gamma - 1)*(v(1)*v(1))/(beta*beta);
+        L(2, 3) = (gamma - 1)*(v(1)*v(2))/(beta*beta);
 
-    L(3, 0) = -gamma*v(2);
-    L(3, 1) = (gamma - 1)*(v(2)*v(0))/(beta*beta);
-    L(3, 2) = (gamma - 1)*(v(2)*v(1))/(beta*beta);
-    L(3, 3) = 1 + (gamma - 1)*(v(2)*v(2))/(beta*beta);
-
+        L(3, 0) = -gamma*v(2);
+        L(3, 1) = (gamma - 1)*(v(2)*v(0))/(beta*beta);
+        L(3, 2) = (gamma - 1)*(v(2)*v(1))/(beta*beta);
+        L(3, 3) = 1 + (gamma - 1)*(v(2)*v(2))/(beta*beta);
+    }
+    else {
+        L = Eigen::Matrix4d::Identity();
+    }
     return L;
+}
+
+Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
+    double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
+
+    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
+
+    return v_cartesian/gamma;
+}
+
+Eigen::Vector4d Metric::transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi) {
+    Eigen::Vector4d vec_global;
+
+    vec_global(0) = vec(0);
+    vec_global(1) = vec(1)/std::sqrt(g_rr(r, theta));
+    vec_global(2) = vec(2)/std::sqrt(g_thth(r, theta));
+    vec_global(3) = vec(3)/std::sqrt(g_phph(r, theta));
+
+    return vec_global;
 }

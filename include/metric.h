@@ -32,15 +32,25 @@ public:
     } 
 
     // Components of the metric tensor
-    virtual inline double g_tt(double r, double theta);
+    virtual inline double g_tt(double r, double theta) {
+        return -1.0;
+    }
 
-    virtual inline double g_tph(double r, double theta);
+    virtual inline double g_tph(double r, double theta) {
+        return 0.0;
+    }
 
-    virtual inline double g_rr(double r, double theta);
+    virtual inline double g_rr(double r, double theta) {
+        return 1.0;
+    }
 
-    virtual inline double g_thth(double r, double theta);
+    virtual inline double g_thth(double r, double theta) {
+        return r*r;
+    }
 
-    virtual inline double g_phph(double r, double theta);
+    virtual inline double g_phph(double r, double theta) {
+        return r*r*std::sin(theta)*std::sin(theta);
+    }
 
     // Computing the initial value of p^t = dx^t/dlambda. 
     // mu = p^\mu p_\mu
@@ -81,4 +91,8 @@ public:
     double orbital_velocity(const double r);
 
     Eigen::Matrix4d lorentz_transformation(const Eigen::Vector3d& v);
+
+    virtual Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
+
+    virtual Eigen::Vector4d transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi);
 };

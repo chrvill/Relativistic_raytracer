@@ -61,17 +61,53 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
 
     double max_value = 0.0;
 
+    Eigen::Vector3d local_camera_velocity = metric.compute_local_cartesian_velocity(Eigen::Vector3d(camera_u(1), camera_u(2), camera_u(3)), r, theta);
+    
+    Eigen::Matrix4d lorentz = metric.lorentz_transformation(local_camera_velocity);
+
+    std::cout << lorentz << "\n\n";
+
     #pragma omp parallel for
     for (int j = 0; j < num_pixels; ++j)
     {   
         Vector8d y0;
-        Eigen::Vector3d ray = metric.transform_cartesian_vec(initial_rays.row(j), r, theta, phi);
+        Eigen::Vector3d cartesian_ray = initial_rays.row(j);
+
+        double ray0 = cartesian_ray.norm();
+
+        Eigen::Vector4d temp_4vec = Eigen::Vector4d(ray0, cartesian_ray(0), cartesian_ray(1), cartesian_ray(2));
+
+        Eigen::Vector4d ray_prime = lorentz * temp_4vec;
+
+        Eigen::Vector3d ray = metric.transform_cartesian_vec(Eigen::Vector3d(ray_prime(1), ray_prime(2), ray_prime(3)), r, theta, phi);
+
+        ray(0) *= 1.0/std::sqrt(metric.g_rr(r, theta));
+        ray(1) *= 1.0/std::sqrt(metric.g_thth(r, theta));
+        ray(2) *= 1.0/std::sqrt(metric.g_phph(r, theta)); 
 
         y0 << 0, r, theta, phi, 0, ray(0), ray(1), ray(2);
-    
+
         double p0 = metric.compute_p0(y0(1), y0(2), y0(5), y0(6), y0(7));
 
         y0(4) = p0;
+
+        /*
+        double ray0 = cartesian_ray.norm();
+
+        Eigen::Vector4d ray_4vec = Eigen::Vector4d(ray0, cartesian_ray(0), cartesian_ray(1), cartesian_ray(2));
+
+        Eigen::Vector4d ray_prime = lorentz * ray_4vec;
+
+        Eigen::Vector3d ray_local = metric.transform_cartesian_vec(Eigen::Vector3d(ray_prime(1), ray_prime(2), ray_prime(3)), r, theta, phi);
+
+        Eigen::Vector4d ray = metric.transform_vec_to_global(Eigen::Vector4d(ray_prime(0), ray_local(0), ray_local(1), ray_local(2)), r, theta, phi);
+
+        y0 << 0, r, theta, phi, ray(0), ray(1), ray(2), ray(3);
+
+        double p0 = metric.compute_p0(r, theta, ray(1), ray(2), ray(3));
+
+        y0(4) = p0;
+        */
         double affine_parameter = 0.0;
 
         bool outside_celestial_sphere = false;
@@ -144,6 +180,7 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0, size_t image_
 
         if (outside_celestial_sphere) 
         {
+            
             Eigen::Vector3d cartesian_ray = metric.transform_vec_to_cartesian(Eigen::Vector3d(y(5), y(6), y(7)), y(1), y(2), y(3));
 
             double v_phi = std::atan2(cartesian_ray(1), cartesian_ray(0));

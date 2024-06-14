@@ -11,6 +11,12 @@ public:
 
     Kerr(double a) : a(a), r_EH(1 + std::sqrt(1 - a * a)) {}
 
+    inline double Sigma(double r, double theta);
+
+    inline double Delta(double r, double theta);
+
+    inline double Lambda(double r, double theta);
+
     inline double g_tt(double r, double theta);
 
     inline double g_tph(double r, double theta);
@@ -31,5 +37,7 @@ public:
 
     Eigen::Matrix3d transformationMatrix(double r, double theta, double phi);
 
+    Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
     
+    Eigen::Vector4d transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi);
 };

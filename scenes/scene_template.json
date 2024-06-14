@@ -1,0 +1,43 @@
+{
+    "camera": {
+        "properties": {
+            "focal_length": "double: Focal length of the camera",
+            "image_width": "int: Width in pixels of the generated image",
+            "image_height": "int: Height in pixels of the generated image",
+            "fov": "double: Field of view of the camera in radians"
+        },
+        "position": {
+            "r": "double: radial coordinate of the camera",
+            "theta": "double: polar angle of the camera",
+            "phi": "double: azimuthal angle of the camera"
+        },
+        "up_vector": [
+            "double: x component of the up direction of the camera", 
+            "double: y component of the up direction of the camera",
+            "double: z component of the up direction of the camera"
+        ],
+        "camera_dir": [
+            "double: x component of the direction of the camera",
+            "double: y component of the direction of the camera",
+            "double: z component of the direction of the camera"
+        ],
+        "camera_velocity": [
+            "double: r component of the 4-velocity of the camera",
+            "double: theta component of the 4-velocity of the camera",
+            "double: phi component of the 4-velocity of the camera"
+        ]
+    },
+    "metric": {
+        "name": "str: Name of the metric to use",
+        "parameters": {
+            "any potential parameters for the metric"
+        }
+    },
+    "simulation_settings": {
+        "n_steps": "int: maximum number of steps to take in the simulation",
+        "initial_step_size": "double: The initial step size in the integration"
+    },
+    "background": "str: The path to the background image we want to use",
+    "output_file": "str: The path to the output file we want to write to",
+    "render_disk": "bool: Whether to render an accretion disk or not"
+}

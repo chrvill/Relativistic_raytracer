@@ -21,8 +21,8 @@
             -1.0,
             0.0
         ],
-        "camera_local_velocity": [
-            0.0,
+        "camera_velocity": [
+            -1.0,
             0.0,
             0.0
         ]
