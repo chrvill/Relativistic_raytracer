@@ -23,12 +23,24 @@ public:
     double a = 0.0;
     double sign_a = 1.0;
 
+    Eigen::MatrixXd B = Eigen::MatrixXd::Zero(5, 5);
+    Eigen::VectorXd CH = Eigen::VectorXd::Zero(6);
+    Eigen::VectorXd CT = Eigen::VectorXd::Zero(6);
 
     Metric(): a() {
         if (a != 0.0)
         {
             sign_a = a/std::abs(a);
         }
+
+        B << 0.25, 0, 0, 0, 0,
+            3.0 / 32.0, 9.0 / 32.0, 0, 0, 0,
+            1932.0 / 2197.0, -7200.0 / 2197.0, 7296.0 / 2197.0, 0, 0,
+            439.0 / 216.0, -8.0, 3680.0 / 513.0, -845.0 / 4104.0, 0,
+            -8.0 / 27.0, 2.0, -3544.0 / 2565.0, 1859.0 / 4104.0, -11.0 / 40.0;
+
+        CH << 16.0 / 135.0, 0, 6656.0 / 12825.0, 28561.0 / 56430.0, -9.0 / 50.0, 2.0 / 55.0;
+        CT << -1.0/360.0, 0, 128.0/4275.0, 2197.0/75240.0, -1.0/50.0, -2.0/55.0;
     } 
 
     // Components of the metric tensor
@@ -63,7 +75,7 @@ public:
     virtual Vector8d RKF45(const Vector8d& y, double &h, double tol = 1e-5);
 
     // Conditions for breaking the integration
-    virtual bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
+    virtual inline bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
         outside_celestial_sphere = y(1) >= 100.0;
 
         return outside_celestial_sphere;
@@ -74,8 +86,14 @@ public:
                             bool& outside_celestial_sphere, bool& below_EH, bool& inside_disk);
 
     // Take a position expressed in spherical/Boyer-Lindquist coordinates to Cartesian coordinates
-    virtual Eigen::Vector3d pos_to_cartesian(double r, double theta, double phi);
-
+    virtual inline Eigen::Vector3d pos_to_cartesian(double r, double theta, double phi) {
+        return Eigen::Vector3d(
+            r * std::sin(theta) * std::cos(phi),
+            r * std::sin(theta) * std::sin(phi),
+            r * std::cos(theta)
+        );
+    }
+    
     // Transformation matrix taking a vector expressed in Cartesian coordinates to spherical/Boyer-Lindquist coordinates
     virtual Eigen::Matrix3d transformationMatrix(double r, double theta, double phi);
 

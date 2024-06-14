@@ -273,6 +273,12 @@ CTEST_SUBMIT_RETRY_DELAY:STRING=5
 //Maximum time allowed before CTest will kill the test.
 DART_TESTING_TIMEOUT:STRING=1500
 
+//The directory containing a CMake configuration file for EIGEN_MKL.
+EIGEN_MKL_DIR:PATH=EIGEN_MKL_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for Eigen3.
+Eigen3_DIR:PATH=Eigen3_DIR-NOTFOUND
+
 //Path to a program.
 GITCOMMAND:FILEPATH=D:/Program Files (x86)/Git/cmd/git.exe
 
@@ -284,6 +290,9 @@ MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
 
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
+
+//The directory containing a CMake configuration file for MKL.
+MKL_DIR:PATH=MKL_DIR-NOTFOUND
 
 //CXX compiler flags for OpenMP parallelization
 OpenMP_CXX_FLAGS:STRING=-fopenmp

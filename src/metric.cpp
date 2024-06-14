@@ -30,15 +30,24 @@ Vector8d Metric::geodesic_eq_rhs(const Vector8d& y) {
     double cos_theta = std::cos(theta);
     double sin_theta = std::sin(theta);
 
-    derivatives(0) = p0;
-    derivatives(1) = p1;
-    derivatives(2) = p2;
-    derivatives(3) = p3;
+    //derivatives(0) = p0;
+    //derivatives(1) = p1;
+    //derivatives(2) = p2;
+    //derivatives(3) = p3;
 
-    derivatives(4) = 0.0;
-    derivatives(5) = r*p2*p2 + r*sin_theta*sin_theta*p3*p3;
-    derivatives(6) = -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3;
-    derivatives(7) = -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
+    //derivatives(4) = 0.0;
+    //derivatives(5) = r*p2*p2 + r*sin_theta*sin_theta*p3*p3;
+    //derivatives(6) = -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3;
+    //derivatives(7) = -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
+
+    derivatives << p0, 
+                   p1, 
+                   p2, 
+                   p3, 
+                   0.0, 
+                   r*p2*p2 + r*sin_theta*sin_theta*p3*p3, 
+                   -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3, 
+                   -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
 
     return derivatives;
 }
@@ -54,16 +63,19 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
     Vector8d k5;
     Vector8d k6;
 
+    Vector8d error;
+
     while (abs_error > tol)
     {
         k1 = geodesic_eq_rhs(y) * h;
-        k2 = geodesic_eq_rhs(y +           0.25 * k1) * h;
-        k3 = geodesic_eq_rhs(y +      3.0 / 32.0 * k1 +      9.0 / 32.0 * k2) * h;
-        k4 = geodesic_eq_rhs(y + 1932.0 / 2197.0 * k1 - 7200.0 / 2197.0 * k2 + 7296.0 / 2197.0 * k3) * h;
-        k5 = geodesic_eq_rhs(y +   439.0 / 216.0 * k1 -             8.0 * k2 +  3680.0 / 513.0 * k3 -  845.0 / 4104.0 * k4) * h;
-        k6 = geodesic_eq_rhs(y -      8.0 / 27.0 * k1 +             2.0 * k2 - 3544.0 / 2565.0 * k3 + 1859.0 / 4104.0 * k4 - 11.0 / 40.0 * k5) * h;
+        k2 = geodesic_eq_rhs(y + B(0, 0) * k1) * h;
+        k3 = geodesic_eq_rhs(y + B(1, 0) * k1 + B(1, 1) * k2) * h;
+        k4 = geodesic_eq_rhs(y + B(2, 0) * k1 + B(2, 1) * k2 + B(2, 2) * k3) * h;
+        k5 = geodesic_eq_rhs(y + B(3, 0) * k1 + B(3, 1) * k2 + B(3, 2) * k3 + B(3, 3) * k4) * h;
+        k6 = geodesic_eq_rhs(y + B(4, 0) * k1 + B(4, 1) * k2 + B(4, 2) * k3 + B(4, 3) * k4 + B(4, 4) * k5) * h;
 
-        Vector8d error = -1.0/360.0 * k1 + 128.0/4275.0 * k3 + 2197.0/75240.0 * k4 - 1.0/50.0 * k5 - 2.0/55.0 * k6;
+        //Vector8d error = -1.0/360.0 * k1 + 128.0/4275.0 * k3 + 2197.0/75240.0 * k4 - 1.0/50.0 * k5 - 2.0/55.0 * k6;
+        error = CT(0) * k1 + CT(1) * k2 + CT(2) * k3 + CT(3) * k4 + CT(4) * k5 + CT(5) * k6;
 
         //abs_error = std::sqrt(error(0) * error(0) + error(1) * error(1) + error(2) * error(2) + error(3) * error(3) + error(4) * error(4) + error(5) * error(5) + error(6) * error(6) + error(7) * error(7));
         abs_error = error.norm();
@@ -85,7 +97,8 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
         */
     }
 
-    return y + 16.0 / 135.0 * k1 + 6656.0 / 12825.0 * k3 + 28651.0 / 56430.0 * k4 - 9.0/50.0 * k5 + 2.0/55.0 * k6;
+    //return y + 16.0 / 135.0 * k1 + 6656.0 / 12825.0 * k3 + 28651.0 / 56430.0 * k4 - 9.0/50.0 * k5 + 2.0/55.0 * k6;
+    return y + CH(0) * k1 + CH(1) * k2 + CH(2) * k3 + CH(3) * k4 + CH(4) * k5 + CH(5) * k6;
 }
 
 Vector8d Metric::solve_geodesic(const Vector8d& y0, int n_steps, double h, double &affine_parameter, 
@@ -103,14 +116,6 @@ Vector8d Metric::solve_geodesic(const Vector8d& y0, int n_steps, double h, doubl
     }
 
     return y;
-}
-
-Eigen::Vector3d Metric::pos_to_cartesian(double r, double theta, double phi) {
-    double x = r * std::sin(theta) * std::cos(phi);
-    double y = r * std::sin(theta) * std::sin(phi);
-    double z = r * std::cos(theta);
-
-    return Eigen::Vector3d(x, y, z);
 }
 
 Eigen::Matrix3d Metric::transformationMatrix(double r, double theta, double phi) {
@@ -137,17 +142,7 @@ Eigen::Matrix3d Metric::transformationMatrix(double r, double theta, double phi)
 }
 
 Eigen::Vector3d Metric::transform_cartesian_vec(const Eigen::Vector3d& vec, double r, double theta, double phi) {
-    Eigen::Matrix3d M = transformationMatrix(r, theta, phi);
-
-    Eigen::Vector3d new_vec = M * vec;
-
-    // The transformation matrix above assumes the basis vectors are orthonormal, but the Christoffel symbols used in the geodesic equation
-    // are derived using so-called coordinate basis vectors, which are not orthonormal. To correct for this, we need to divide by the square root of the metric components.
-    //new_vec(0) *= 1.0/std::sqrt(g_rr(r, theta));
-    //new_vec(1) *= 1.0/std::sqrt(g_thth(r, theta));
-    //new_vec(2) *= 1.0/std::sqrt(g_phph(r, theta));
-
-    return new_vec;
+    return transformationMatrix(r, theta, phi) * vec;
 }
 
 Eigen::Vector3d Metric::transform_vec_to_cartesian(const Eigen::Vector3d& vec, double r, double theta, double phi) {

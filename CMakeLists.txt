@@ -12,7 +12,7 @@ find_package(OpenMP REQUIRED)
 include_directories(include)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
-add_definitions(-DEIGEN_NO_DEBUG)
+add_definitions(-DEIGEN_NO_DEBUG -DNDEBUG -fno-math-errno)
 
 file(GLOB SOURCES "src/*.cpp")
 add_executable(${TARGET_NAME} ${SOURCES})
@@ -22,6 +22,7 @@ if(OpenMP_CXX_FOUND)
 endif()
 
 target_compile_options(${TARGET_NAME} PRIVATE -O3 -march=native)
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-flto")
 
 include(CTest)
 enable_testing()
