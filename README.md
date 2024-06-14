@@ -27,7 +27,17 @@ Here I've used the [Runge-Kutta-Fehlberg](https://en.wikipedia.org/wiki/Runge%E2
 
 ### Project structure
 
-Instead of defining the position of the camera, its direction, the parameters of the metric etc. inside the code I use `.json` files to specify all of this. I call these *scenes*, and a given scene fully specifies the state of the simulation. In `src/main.cpp` I read in a scene file and use it to define all of the simulation settings. Although this clutters `main.cpp` it makes it significantly easier to change between simulations, because I can just save different simulation settings in different scene files, and change between them in `main.cpp` by just changing which scene file to read. I have also crated a `scene_template.json` file which shows the structure the code is expecting the scene files to take, together with a description of what each of the parameters describes. 
+- `metric.cpp`: Defines the base `Metric` class from which all other metric classes derive. Defines the methods for implementing the RKF45 integration scheme, coordinate transformations between Cartesian and spherical/Boyer-Lindquist coordinates, function for computing the $\mu = 0$ component of a four-vector given its $\mu = 1, 2, 3$ components. This `Metric` class can also be used directly, in which case we are desccribing Minkowski spacetime. 
+
+- `kerr.cpp`: Defines the `Kerr` class which derives from the `Metric` class. This specializes a lot of the functions from the `Metric` class to Kerr spacetime. This includes the components of the metric tensor, the right-hand side (rhs) of the geodesic equation and the coordinate transformation functions.
+
+- `schwarzschild.cpp`: Completely analogous to the `Kerr` class, the `Schwarzschild` class also derives from the `Metric` class, and describes Schwarzschild spacetime. 
+
+- `scene.cpp`: Defines the `Scene` class, which has methods for initializing and simulating the camera rays. 
+
+- `colorCalculator.cpp`: Defines the `ColorCalculator` class, which has methods for computing the RGB color of a blackbody at a given temperature $T$. 
+
+Instead of defining the position of the camera, its direction, the parameters of the metric etc. inside the code, I use `.json` files to specify all of this. I call these *scene files*, and a given scene fully specifies the state of the simulation. In `src/main.cpp` I read in a scene file and use it to define all of the simulation settings. Although this clutters `main.cpp` it makes it significantly easier to change between simulations, because I can just save different simulation settings in different scene files, and change between them in `main.cpp` by just changing which scene file to read. I have also crated a `scene_template.json` file which shows the structure the code is expecting the scene files to take, together with a description of what each of the parameters describes. 
 
 The `main.cpp` code then initializes a `scene` object from `scene.cpp` (slightly confusing, because this `scene` is not directly related to the scene files themselves. Should change name), which has methods for initializing the rays from the camera and solving the geodesic equation for each of these. `Scene::simulate_camera_rays` contains the main render loop. The generated image is then saved to file in `main.cpp`. 
 
