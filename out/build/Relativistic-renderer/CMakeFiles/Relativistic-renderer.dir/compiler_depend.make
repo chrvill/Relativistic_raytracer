@@ -2528,6 +2528,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/bits/basic_string.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/char_traits.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/charconv.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/chrono.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/codecvt.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/concept_check.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/cpp_type_traits.h \
@@ -2560,6 +2561,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/bits/node_handle.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ostream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ostream_insert.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/parse_numbers.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/postypes.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/predefined_ops.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/ptr_traits.h \
@@ -2575,6 +2577,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/bits/sstream.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/std_abs.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/std_function.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/std_mutex.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_algo.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_algobase.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_bvector.h \
@@ -2598,6 +2601,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/bits/string_view.tcc \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/stringfwd.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/uniform_int_dist.h \
+  C:/msys64/ucrt64/include/c++/13.1.0/bits/unique_lock.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/unique_ptr.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/unordered_map.h \
   C:/msys64/ucrt64/include/c++/13.1.0/bits/uses_allocator.h \
@@ -2618,6 +2622,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/cstdio \
   C:/msys64/ucrt64/include/c++/13.1.0/cstdlib \
   C:/msys64/ucrt64/include/c++/13.1.0/cstring \
+  C:/msys64/ucrt64/include/c++/13.1.0/ctime \
   C:/msys64/ucrt64/include/c++/13.1.0/cwchar \
   C:/msys64/ucrt64/include/c++/13.1.0/cwctype \
   C:/msys64/ucrt64/include/c++/13.1.0/debug/assertions.h \
@@ -2641,6 +2646,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/limits \
   C:/msys64/ucrt64/include/c++/13.1.0/map \
   C:/msys64/ucrt64/include/c++/13.1.0/memory \
+  C:/msys64/ucrt64/include/c++/13.1.0/mutex \
   C:/msys64/ucrt64/include/c++/13.1.0/new \
   C:/msys64/ucrt64/include/c++/13.1.0/numeric \
   C:/msys64/ucrt64/include/c++/13.1.0/ostream \
@@ -2650,6 +2656,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Ph
   C:/msys64/ucrt64/include/c++/13.1.0/pstl/glue_numeric_defs.h \
   C:/msys64/ucrt64/include/c++/13.1.0/pstl/pstl_config.h \
   C:/msys64/ucrt64/include/c++/13.1.0/random \
+  C:/msys64/ucrt64/include/c++/13.1.0/ratio \
   C:/msys64/ucrt64/include/c++/13.1.0/sstream \
   C:/msys64/ucrt64/include/c++/13.1.0/stdexcept \
   C:/msys64/ucrt64/include/c++/13.1.0/stdlib.h \
@@ -4546,6 +4553,8 @@ D:/Documents/Programs/Eigen/Eigen/src/QR/ColPivHouseholderQR.h:
 
 D:/Documents/Programs/Eigen/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
 
+C:/msys64/ucrt64/include/c++/13.1.0/mutex:
+
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/adl_serializer.hpp:
 
 D:/Documents/Programs/Eigen/Eigen/src/QR/FullPivHouseholderQR.h:
@@ -4685,6 +4694,10 @@ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/schwarzschild.h:
 
 D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/metric.cpp:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/std_mutex.h:
+
+C:/msys64/ucrt64/include/c++/13.1.0/bits/unique_lock.h:
 
 C:/msys64/ucrt64/include/c++/13.1.0/fenv.h:
 
