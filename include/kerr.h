@@ -29,8 +29,14 @@ public:
 
     Vector8d geodesic_eq_rhs(const Vector8d& y);
 
-    bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH);
+    inline bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
+        below_EH = y(1) <= 1.01*r_EH;
+        outside_celestial_sphere = y(1) >= 100.0;
+        //inside_disk = (std::abs(z) <= 0.1) and (y(1) >= 5.0) and (y(1) <= 10.0);
 
+        return (outside_celestial_sphere or below_EH);
+    }
+    
     Eigen::Vector3d CartesianToBLVector(const Eigen::Vector3d& vector, double r, double theta, double phi, double a);
 
     Eigen::Vector3d pos_to_cartesian(double r, double theta, double phi);

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <Eigen/Dense>
 #include <omp.h>
+#include <memory>
 #include <cstdlib>
 #include <string>
 #include <chrono>
@@ -34,8 +35,26 @@ json read_json(const std::string& scene_filename) {
     return data;
 }
 
+std::unique_ptr<Metric> create_metric(const std::string& metric_name, const json& metric_parameters) {
+    if (metric_name == "Kerr") {
+        double a = metric_parameters["a"];
+        return std::make_unique<Kerr>(a);
+    }
+    else if (metric_name == "Schwarzschild") {
+        return std::make_unique<Schwarzschild>();
+    }
+    else if (metric_name == "Minkowski") {
+        return std::make_unique<Metric>();
+    }
+    else {
+        throw std::invalid_argument("Invalid metric name.");
+    }
+}
+
 int main() {
-    json data = read_json("scenes/minkowski.json");
+    omp_set_num_threads(8);
+
+    json data = read_json("scenes/kerr.json");
 
     auto camera = data["camera"];
     auto cam_pos = camera["position"];
@@ -70,11 +89,10 @@ int main() {
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    if (metric_name == "Kerr") {
+    try {
+        auto metric_pointer = create_metric(metric_name, metric_parameters);
+        Metric& metric = *metric_pointer;
 
-        double a = metric_parameters["a"];
-        Kerr metric(a);
-        std::cout << a << "\n";
         Disk disk(metric);
 
         Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
@@ -83,28 +101,9 @@ int main() {
         // ------ Simulating the camera rays and drawing the image ------
         img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
         img::save(data["output_file"], image);
-    }
-    else if (metric_name == "Schwarzschild") {
-        Schwarzschild metric;
-        Disk disk(metric);
 
-        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
-        scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
-
-        // ------ Simulating the camera rays and drawing the image ------
-        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
-        img::save(data["output_file"], image);
-    }
-    else if (metric_name == "Minkowski") {
-        Metric metric;
-        Disk disk(metric);
-        
-        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
-        scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
-
-        // ------ Simulating the camera rays and drawing the image ------
-        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
-        img::save(data["output_file"], image);
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << "\n";
     }
 
     auto end = std::chrono::high_resolution_clock::now();
