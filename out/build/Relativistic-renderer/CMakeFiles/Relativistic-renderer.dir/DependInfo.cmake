@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/colorCalculator.cpp" "CMakeFiles/Relativistic-renderer.dir/src/colorCalculator.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/colorCalculator.cpp.obj.d"
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/disk.cpp" "CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj.d"
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/kerr.cpp" "CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj.d"
+  "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/kerr_newman.cpp" "CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj.d"
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/main.cpp" "CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj.d"
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/metric.cpp" "CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj.d"
   "D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/scene.cpp" "CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj" "gcc" "CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj.d"

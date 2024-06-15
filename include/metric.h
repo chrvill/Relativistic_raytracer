@@ -67,9 +67,10 @@ public:
     // Computing the initial value of p^t = dx^t/dlambda. 
     // mu = p^\mu p_\mu
     double compute_p0(double r, double theta, double p1, double p2, double p3, double mu = 0);
+    double compute_p0(double gtt, double grr, double gthth, double gphph, double gtph, double p1, double p2, double p3, double mu = 0);
 
     // Right-hand side of the geodesic equation
-    virtual Vector8d geodesic_eq_rhs(const Vector8d& y);
+    virtual void geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives);
 
     // Runge-Kutta-Fehlberg integration scheme
     virtual Vector8d RKF45(const Vector8d& y, double &h, double tol = 1e-5);
@@ -80,10 +81,6 @@ public:
 
         return outside_celestial_sphere;
     }
-
-    // Solve the geodesic equation for a given set of initial conditions
-    Vector8d solve_geodesic(const Vector8d& y0, int n_steps, double h, double &affine_parameter, 
-                            bool& outside_celestial_sphere, bool& below_EH, bool& inside_disk);
 
     // Take a position expressed in spherical/Boyer-Lindquist coordinates to Cartesian coordinates
     virtual inline Eigen::Vector3d pos_to_cartesian(double r, double theta, double phi) {

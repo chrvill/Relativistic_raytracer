@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj.d"
   "CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj"
   "CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj.d"
+  "CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj"
+  "CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj.d"
   "CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj"
   "CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj.d"
   "CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj"

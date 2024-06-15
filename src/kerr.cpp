@@ -43,8 +43,8 @@ inline double Kerr::g_phph(double r, double theta) {
     return Lambda / sigma * std::sin(theta) * std::sin(theta);
 }
 
-Vector8d Kerr::geodesic_eq_rhs(const Vector8d& y) {
-    Eigen::Matrix<double, 8, 1> derivatives;
+void Kerr::geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives) {
+    //Eigen::Matrix<double, 8, 1> derivatives;
     double t = y(0);
     double r = y(1);
     double theta = y(2);
@@ -107,7 +107,7 @@ Vector8d Kerr::geodesic_eq_rhs(const Vector8d& y) {
 
     //derivatives(7) = -2*p0*p1*(-1.0*ar*(-4*r2/Sigma2 + 2/(Sigma))/(2*a2*r*sin_theta2 - 2*a2*r - 2*r3 + a4*cos_theta2 + a2r2*cos_theta2 + a2r2 + r4) + 0.5*(4*ar2*sin_theta2/Sigma2 - 2*a*sin_theta2/(Sigma))*(-2*r + Sigma)/(2*a2*r*sin_theta4 - 2*a2*r*sin_theta2 - 2*r3*sin_theta2 + a4*sin2_cos2 + a2r2*sin2_cos2 + a2r2*sin_theta2 + r4*sin_theta2)) - 2*p0*p2*(-4.0*a3*r2*sin_cos/(Sigma2*(2*a2*r*sin_theta2 - 2*a2*r - 2*r3 + a4*cos_theta2 + a2r2*cos_theta2 + a2r2 + r4)) + 0.5*(-4*a3*r*sin_theta3*cos_theta/Sigma2 - 4*ar*sin_cos/(Sigma))*(-2*r + Sigma)/(2*a2*r*sin_theta4 - 2*a2*r*sin_theta2 - 2*r3*sin_theta2 + a4*sin2_cos2 + a2r2*sin2_cos2 + a2r2*sin_theta2 + r4*sin_theta2)) - 2*p1*p3*(-1.0*ar*(4*ar2*sin_theta2/Sigma2 - 2*a*sin_theta2/(Sigma))/(2*a2*r*sin_theta2 - 2*a2*r - 2*r3 + a4*cos_theta2 + a2r2*cos_theta2 + a2r2 + r4) + 0.5*(-2*r + Sigma)*(-4*a2r2*sin_theta2/Sigma2 + 2*a2*sin_theta2/(Sigma) + 2*r)*sin_theta2/(2*a2*r*sin_theta4 - 2*a2*r*sin_theta2 - 2*r3*sin_theta2 + a4*sin2_cos2 + a2r2*sin2_cos2 + a2r2*sin_theta2 + r4*sin_theta2)) - 2*p2*p3*(-1.0*ar*(-4*a3*r*sin_theta3*cos_theta/Sigma2 - 4*ar*sin_cos/(Sigma))/(2*a2*r*sin_theta2 - 2*a2*r - 2*r3 + a4*cos_theta2 + a2r2*cos_theta2 + a2r2 + r4) + 0.5*((4*a4*r*sin_theta3*cos_theta/Sigma2 + 4*a2*r*sin_cos/(Sigma))*sin_theta2 + 2*(2*a2*r*sin_theta2/(Sigma) + a2 + r2)*sin_cos)*(-2*r + Sigma)/(2*a2*r*sin_theta4 - 2*a2*r*sin_theta2 - 2*r3*sin_theta2 + a4*sin2_cos2 + a2r2*sin2_cos2 + a2r2*sin_theta2 + r4*sin_theta2));
 
-    return derivatives;
+    //return derivatives;
 }
 
 Eigen::Vector3d Kerr::CartesianToBLVector(const Eigen::Vector3d& vector, double r, double theta, double phi, double a) {
@@ -173,7 +173,7 @@ Eigen::Matrix3d Kerr::transformationMatrix(double r, double theta, double phi) {
     return M;
 }
 
-Eigen::Vector3d Kerr::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
+Eigen::Vector3d Kerr::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {    
     double v0 = compute_p0(r, theta, v(0), v(1), v(2), -1);
     std::cout << "v0\t" << v0 << std::endl;
 

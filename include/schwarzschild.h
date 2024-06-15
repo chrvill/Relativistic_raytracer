@@ -23,7 +23,7 @@ public:
     inline double g_tph(double r, double theta);
     */
 
-    Vector8d geodesic_eq_rhs(const Vector8d& y);
+    void geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives);
 
     bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH);
 };

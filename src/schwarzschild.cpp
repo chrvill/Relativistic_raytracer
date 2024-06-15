@@ -24,8 +24,8 @@ inline double Schwarzschild::g_phph(double r, double theta) {
 }
 */
 
-Vector8d Schwarzschild::geodesic_eq_rhs(const Vector8d& y) {
-    Eigen::Matrix<double, 8, 1> derivatives;
+void Schwarzschild::geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives) {
+    //Eigen::Matrix<double, 8, 1> derivatives;
 
     double r = y(1);
     double theta = y(2);
@@ -48,7 +48,7 @@ Vector8d Schwarzschild::geodesic_eq_rhs(const Vector8d& y) {
     derivatives(6) = -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3;
     derivatives(7) = -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
 
-    return derivatives;
+    //return derivatives;
 }
 
 bool Schwarzschild::break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
@@ -58,5 +58,5 @@ bool Schwarzschild::break_integration(const Vector8d& y, bool &outside_celestial
         outside_celestial_sphere = y(1) >= 100.0;
         //inside_disk = (std::abs(z) <= 0.1) and (y(1) >= 5.0) and (y(1) <= 10.0);
 
-        return (outside_celestial_sphere or below_EH);
+        return (outside_celestial_sphere || below_EH);
     }
