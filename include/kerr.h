@@ -27,7 +27,7 @@ public:
 
     inline double g_phph(double r, double theta);
 
-    Vector8d geodesic_eq_rhs(const Vector8d& y);
+    void geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives);
 
     inline bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
         below_EH = y(1) <= 1.01*r_EH;

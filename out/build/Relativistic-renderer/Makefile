@@ -574,6 +574,30 @@ src/kerr.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Relativistic-renderer.dir\build.make CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.s
 .PHONY : src/kerr.cpp.s
 
+src/kerr_newman.obj: src/kerr_newman.cpp.obj
+.PHONY : src/kerr_newman.obj
+
+# target to build an object file
+src/kerr_newman.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Relativistic-renderer.dir\build.make CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj
+.PHONY : src/kerr_newman.cpp.obj
+
+src/kerr_newman.i: src/kerr_newman.cpp.i
+.PHONY : src/kerr_newman.i
+
+# target to preprocess a source file
+src/kerr_newman.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Relativistic-renderer.dir\build.make CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.i
+.PHONY : src/kerr_newman.cpp.i
+
+src/kerr_newman.s: src/kerr_newman.cpp.s
+.PHONY : src/kerr_newman.s
+
+# target to generate assembly for a file
+src/kerr_newman.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Relativistic-renderer.dir\build.make CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.s
+.PHONY : src/kerr_newman.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -717,6 +741,9 @@ help:
 	@echo ... src/kerr.obj
 	@echo ... src/kerr.i
 	@echo ... src/kerr.s
+	@echo ... src/kerr_newman.obj
+	@echo ... src/kerr_newman.i
+	@echo ... src/kerr_newman.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

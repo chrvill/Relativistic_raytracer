@@ -51,15 +51,11 @@ std::unique_ptr<Metric> create_metric(const std::string& metric_name, const json
     }
 }
 
-int main() {
-    omp_set_num_threads(8);
-
-    json data = read_json("scenes/schwarzschild.json");
-
-    auto camera = data["camera"];
+void create_image(json& scene_file) {
+    auto camera = scene_file["camera"];
     auto cam_pos = camera["position"];
 
-    auto metric_object = data["metric"];
+    auto metric_object = scene_file["metric"];
     std::string metric_name = metric_object["name"];
 
     // ------ Camera variables ------
@@ -78,16 +74,15 @@ int main() {
     
     // ------ Initializing the scene ------
     std::string cie_filename = "txtfiles/cie_interpolated.txt";
-    std::string background_image_filename = data["background"];
+    std::string background_image_filename = scene_file["background"];
 
     auto metric_parameters = metric_object["parameters"];
 
-    auto simulation_settings = data["simulation_settings"];
-    size_t n_steps = simulation_settings["n_steps"];
-    double h0 = simulation_settings["initial_step_size"];
-    bool render_disk = data["render_disk"];
-
-    auto start = std::chrono::high_resolution_clock::now();
+    auto simulation_settings = scene_file["simulation_settings"];
+    size_t n_steps = scene_file["simulation_settings"]["n_steps"];
+    double h0 = scene_file["simulation_settings"]["initial_step_size"];
+    bool render_disk = scene_file["render_disk"];
+    double error_tolerance = simulation_settings["error_tolerance"];
 
     try {
         auto metric_pointer = create_metric(metric_name, metric_parameters);
@@ -95,16 +90,25 @@ int main() {
 
         Disk disk(metric);
 
-        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk);
+        Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk, error_tolerance);
         scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
 
         // ------ Simulating the camera rays and drawing the image ------
-        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0, image_height, image_width);
-        img::save(data["output_file"], image);
-
+        img::ImageRGBf image = scene.simulate_camera_rays(n_steps, h0);
+        img::save(scene_file["output_file"], image);
     } catch (const std::exception& e) {
         std::cerr << e.what() << "\n";
     }
+}
+
+int main() {
+    omp_set_num_threads(16);
+
+    auto start = std::chrono::high_resolution_clock::now();
+
+    json scene_file = read_json("scenes/kerr.json");
+
+    create_image(scene_file);
 
     auto end = std::chrono::high_resolution_clock::now();
 

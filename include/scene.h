@@ -29,11 +29,13 @@ public:
     ColorCalculator colorCalculator;
 
     bool render_disk;
+    double error_tolerance;
 
     img::ImageRGBf background;
     std::string background_image_filename;
 
-    Scene(double focal_length_, size_t image_width_, size_t image_height_, double fov_, Metric& metric_, Disk& disk_, std::string& cie_filename, std::string& background_image_filename_, bool render_disk_ = true): 
+    Scene(double focal_length_, size_t image_width_, size_t image_height_, double fov_, Metric& metric_, Disk& disk_, std::string& cie_filename, 
+            std::string& background_image_filename_, bool render_disk_, double error_tolerance_): 
     metric(metric_), disk(disk_), colorCalculator(cie_filename) {
         focal_length = focal_length_;
         image_width = image_width_;
@@ -43,6 +45,7 @@ public:
         aspect_ratio = static_cast<double>(image_width)/image_height;
         background_image_filename = background_image_filename_;
         render_disk = render_disk_;
+        error_tolerance = error_tolerance_;
 
         bool loaded = img::load(background_image_filename, background);
     }
@@ -54,7 +57,7 @@ public:
                     const Eigen::Vector3d& camera_dir, const Eigen::Vector3d& up_vector);
 
     // Solve the geodesic equation for each of the rays, compute redshift and color for each pixel.
-    img::ImageRGBf simulate_camera_rays(int n_steps, double h, size_t image_height, size_t image_width);
+    img::ImageRGBf simulate_camera_rays(int n_steps, double h);
 
     Eigen::Vector3d lookup_background(Eigen::Vector2d uv);
 

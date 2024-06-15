@@ -113,11 +113,26 @@ CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\kerr.cpp -o CMakeFiles\Relativistic-renderer.dir\src\kerr.cpp.s
 
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj: CMakeFiles/Relativistic-renderer.dir/flags.make
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj: CMakeFiles/Relativistic-renderer.dir/includes_CXX.rsp
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/kerr_newman.cpp
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj: CMakeFiles/Relativistic-renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj -MF CMakeFiles\Relativistic-renderer.dir\src\kerr_newman.cpp.obj.d -o CMakeFiles\Relativistic-renderer.dir\src\kerr_newman.cpp.obj -c D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\kerr_newman.cpp
+
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\kerr_newman.cpp > CMakeFiles\Relativistic-renderer.dir\src\kerr_newman.cpp.i
+
+CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\kerr_newman.cpp -o CMakeFiles\Relativistic-renderer.dir\src\kerr_newman.cpp.s
+
 CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: CMakeFiles/Relativistic-renderer.dir/flags.make
 CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: CMakeFiles/Relativistic-renderer.dir/includes_CXX.rsp
 CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/main.cpp
 CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: CMakeFiles/Relativistic-renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj -MF CMakeFiles\Relativistic-renderer.dir\src\main.cpp.obj.d -o CMakeFiles\Relativistic-renderer.dir\src\main.cpp.obj -c D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\main.cpp
 
 CMakeFiles/Relativistic-renderer.dir/src/main.cpp.i: cmake_force
@@ -132,7 +147,7 @@ CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: CMakeFiles/Relativistic
 CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: CMakeFiles/Relativistic-renderer.dir/includes_CXX.rsp
 CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/metric.cpp
 CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj: CMakeFiles/Relativistic-renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj -MF CMakeFiles\Relativistic-renderer.dir\src\metric.cpp.obj.d -o CMakeFiles\Relativistic-renderer.dir\src\metric.cpp.obj -c D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\metric.cpp
 
 CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.i: cmake_force
@@ -147,7 +162,7 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: CMakeFiles/Relativistic-
 CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: CMakeFiles/Relativistic-renderer.dir/includes_CXX.rsp
 CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/scene.cpp
 CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: CMakeFiles/Relativistic-renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj -MF CMakeFiles\Relativistic-renderer.dir\src\scene.cpp.obj.d -o CMakeFiles\Relativistic-renderer.dir\src\scene.cpp.obj -c D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\scene.cpp
 
 CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.i: cmake_force
@@ -162,7 +177,7 @@ CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj: CMakeFiles/Relat
 CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj: CMakeFiles/Relativistic-renderer.dir/includes_CXX.rsp
 CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj: D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/schwarzschild.cpp
 CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj: CMakeFiles/Relativistic-renderer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj -MF CMakeFiles\Relativistic-renderer.dir\src\schwarzschild.cpp.obj.d -o CMakeFiles\Relativistic-renderer.dir\src\schwarzschild.cpp.obj -c D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\src\schwarzschild.cpp
 
 CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.i: cmake_force
@@ -178,6 +193,7 @@ Relativistic__renderer_OBJECTS = \
 "CMakeFiles/Relativistic-renderer.dir/src/colorCalculator.cpp.obj" \
 "CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj" \
 "CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj" \
+"CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj" \
 "CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj" \
 "CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj" \
 "CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj" \
@@ -189,6 +205,7 @@ Relativistic__renderer_EXTERNAL_OBJECTS =
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/colorCalculator.cpp.obj
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj
+Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/kerr_newman.cpp.obj
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/metric.cpp.obj
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj
@@ -199,7 +216,7 @@ Relativistic-renderer.exe: C:/msys64/ucrt64/lib/libmingwthrd.a
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/linkLibs.rsp
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/objects1.rsp
 Relativistic-renderer.exe: CMakeFiles/Relativistic-renderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Relativistic-renderer.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\Documents\Programs\Physics\BlackHoles\Relativistic-renderer\out\build\Relativistic-renderer\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable Relativistic-renderer.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Relativistic-renderer.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

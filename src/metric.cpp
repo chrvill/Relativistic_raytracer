@@ -10,15 +10,28 @@ double Metric::compute_p0(double r, double theta, double p1, double p2, double p
     double g_thth = this->g_thth(r, theta);
     double g_phph = this->g_phph(r, theta);
 
+    double g_frac = g_tph / g_tt;
+
     if (g_tt < 0) {
-        return -g_tph / g_tt * p3 + std::sqrt((g_tph / g_tt) * (g_tph / g_tt) * p3 * p3 - 1 / g_tt * (g_rr * p1 * p1 + g_thth * p2 * p2 + g_phph * p3 * p3 - mu));
+        return -g_frac * p3 + std::sqrt((g_frac) * (g_frac) * p3 * p3 - 1 / g_tt * (g_rr * p1 * p1 + g_thth * p2 * p2 + g_phph * p3 * p3 - mu));
     } else {
-        return -g_tph / g_tt * p3 - std::sqrt((g_tph / g_tt) * (g_tph / g_tt) * p3 * p3 - 1 / g_tt * (g_rr * p1 * p1 + g_thth * p2 * p2 + g_phph * p3 * p3 - mu));
+        return -g_frac * p3 - std::sqrt((g_frac) * (g_frac) * p3 * p3 - 1 / g_tt * (g_rr * p1 * p1 + g_thth * p2 * p2 + g_phph * p3 * p3 - mu));
     }
 }
 
-Vector8d Metric::geodesic_eq_rhs(const Vector8d& y) {
-    Vector8d derivatives; 
+double Metric::compute_p0(double gtt, double grr, double gthth, double gphph, double gtph, double p1, double p2, double p3, double mu) {
+    double g_frac = gtph / gtt;
+
+    if (gtt < 0) {
+        return -g_frac * p3 + std::sqrt((g_frac) * (g_frac) * p3 * p3 - 1 / gtt * (grr * p1 * p1 + gthth * p2 * p2 + gphph * p3 * p3 - mu));
+    } else {
+        return -g_frac * p3 - std::sqrt((g_frac) * (g_frac) * p3 * p3 - 1 / gtt * (grr * p1 * p1 + gthth * p2 * p2 + gphph * p3 * p3 - mu));
+    }
+}
+
+
+void Metric::geodesic_eq_rhs(const Vector8d& y, Vector8d& derivatives) {
+    //Vector8d derivatives; 
 
     double r = y(1);
     double theta = y(2);
@@ -30,16 +43,6 @@ Vector8d Metric::geodesic_eq_rhs(const Vector8d& y) {
     double cos_theta = std::cos(theta);
     double sin_theta = std::sin(theta);
 
-    //derivatives(0) = p0;
-    //derivatives(1) = p1;
-    //derivatives(2) = p2;
-    //derivatives(3) = p3;
-
-    //derivatives(4) = 0.0;
-    //derivatives(5) = r*p2*p2 + r*sin_theta*sin_theta*p3*p3;
-    //derivatives(6) = -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3;
-    //derivatives(7) = -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
-
     derivatives << p0, 
                    p1, 
                    p2, 
@@ -49,7 +52,7 @@ Vector8d Metric::geodesic_eq_rhs(const Vector8d& y) {
                    -2.0/r*p1*p2 + sin_theta*cos_theta*p3*p3, 
                    -2.0/r*p1*p3 - 2.0*cos_theta/sin_theta*p2*p3;
 
-    return derivatives;
+    //return derivatives;
 }
 
 Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
@@ -67,12 +70,24 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
 
     while (abs_error > tol)
     {
-        k1 = geodesic_eq_rhs(y) * h;
-        k2 = geodesic_eq_rhs(y + B(0, 0) * k1) * h;
-        k3 = geodesic_eq_rhs(y + B(1, 0) * k1 + B(1, 1) * k2) * h;
-        k4 = geodesic_eq_rhs(y + B(2, 0) * k1 + B(2, 1) * k2 + B(2, 2) * k3) * h;
-        k5 = geodesic_eq_rhs(y + B(3, 0) * k1 + B(3, 1) * k2 + B(3, 2) * k3 + B(3, 3) * k4) * h;
-        k6 = geodesic_eq_rhs(y + B(4, 0) * k1 + B(4, 1) * k2 + B(4, 2) * k3 + B(4, 3) * k4 + B(4, 4) * k5) * h;
+        geodesic_eq_rhs(y, k1);
+        k1 *= h;
+
+        geodesic_eq_rhs(y + B(0, 0) * k1, k2);
+        k2 *= h;
+
+        geodesic_eq_rhs(y + B(1, 0) * k1 + B(1, 1) * k2, k3);
+        k3 *= h;
+
+        geodesic_eq_rhs(y + B(2, 0) * k1 + B(2, 1) * k2 + B(2, 2) * k3, k4);
+        k4 *= h;
+
+        geodesic_eq_rhs(y + B(3, 0) * k1 + B(3, 1) * k2 + B(3, 2) * k3 + B(3, 3) * k4, k5);
+        k5 *= h;
+
+        geodesic_eq_rhs(y + B(4, 0) * k1 + B(4, 1) * k2 + B(4, 2) * k3 + B(4, 3) * k4 + B(4, 4) * k5, k6);
+        k6 *= h;
+
 
         //Vector8d error = -1.0/360.0 * k1 + 128.0/4275.0 * k3 + 2197.0/75240.0 * k4 - 1.0/50.0 * k5 - 2.0/55.0 * k6;
         error = CT(0) * k1 + CT(1) * k2 + CT(2) * k3 + CT(3) * k4 + CT(4) * k5 + CT(5) * k6;
@@ -81,41 +96,11 @@ Vector8d Metric::RKF45(const Vector8d& y, double &h, double tol) {
         abs_error = error.norm();
 
         // Adjust the step size based on the error estimate and the tolerance
-        double h_temp = 0.9*h*std::pow(tol/abs_error, 1.0/5.0);
-        
-        h = h_temp;
-
-        /*
-        if (y(1) <= 10.0 and h_temp > 0.1)
-        {
-            h = 0.1;
-        }
-        else
-        {
-            h = h_temp;
-        }
-        */
+        h = 0.9*h*std::pow(tol/abs_error, 1.0/5.0);
     }
 
     //return y + 16.0 / 135.0 * k1 + 6656.0 / 12825.0 * k3 + 28651.0 / 56430.0 * k4 - 9.0/50.0 * k5 + 2.0/55.0 * k6;
     return y + CH(0) * k1 + CH(1) * k2 + CH(2) * k3 + CH(3) * k4 + CH(4) * k5 + CH(5) * k6;
-}
-
-Vector8d Metric::solve_geodesic(const Vector8d& y0, int n_steps, double h, double &affine_parameter, 
-                                bool& outside_celestial_sphere, bool& below_EH, bool& inside_disk) {
-    Vector8d y = y0;
-
-    for (int i = 0; i < n_steps; ++i) {
-        y = RKF45(y, h);
-
-        affine_parameter += h;
-        
-        if (break_integration(y, outside_celestial_sphere, below_EH)) {
-            break;
-        }
-    }
-
-    return y;
 }
 
 Eigen::Matrix3d Metric::transformationMatrix(double r, double theta, double phi) {
@@ -155,7 +140,6 @@ Eigen::Vector3d Metric::transform_vec_to_cartesian(const Eigen::Vector3d& vec, d
     new_vec(2) *= std::sqrt(g_phph(r, theta));
 
     return M.transpose() * new_vec;
-
 }
 
 double Metric::compute_redshift(const Vector8d& initial_y, const Vector8d& final_y, 
@@ -229,7 +213,7 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
 
 Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
     double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
-
+    
     Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
 
     return v_cartesian/gamma;
