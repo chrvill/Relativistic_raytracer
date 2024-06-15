@@ -35,25 +35,25 @@ Assume the camera has four-velocity $u^\mu$ measured in the global frame. Then i
 
 $$
 \begin{equation}
-    \tilde{u}^m = e^{m}_{\;\;\mu} u^\mu
+    \tilde{u}^m = e^{m}_{\mu} u^\mu
 \end{equation}
 $$
 
-where $e^{m}_{\;\;\mu}$ are [tetrads/frame fields](https://en.wikipedia.org/wiki/Frame_fields_in_general_relativity) describing the local frame (which is to say, each observer in relative motion to each other will have a different set of frame fields). Since $\tilde{u}^m$ is a four-velocity in an inertial frame it can also be written as $\tilde{u}^m = \gamma\left(1, \mathbf{v}\right)$, where $\gamma = \frac{1}{\sqrt{1 - \mathbf{v}^2}}$, and $\mathbf{v}$ is the velocity of the camera in the local inertial frame. In order to transform the camera rays from the rest frame of the camera to the local inertial frame specified by $e^{m}_{\;\;\mu}$ we can then simply Lorentz transform them:
+where $e^{m}_{\mu}$ are [tetrads/frame fields](https://en.wikipedia.org/wiki/Frame_fields_in_general_relativity) describing the local frame (which is to say, each observer in relative motion to each other will have a different set of frame fields). Since $\tilde{u}^m$ is a four-velocity in an inertial frame it can also be written as $\tilde{u}^m = \gamma\left(1, \mathbf{v}\right)$, where $\gamma = \frac{1}{\sqrt{1 - \mathbf{v}^2}}$, and $\mathbf{v}$ is the velocity of the camera in the local inertial frame. In order to transform the camera rays from the rest frame of the camera to the local inertial frame specified by $e^{m}_{\mu}$ we can then simply Lorentz transform them:
 
 $$
 \begin{equation}
-    p'^m = \Lambda^{m}_{\;\;n}(\mathbf{v})p^n
+    p'^m = \Lambda^{m}_{n}(\mathbf{v})p^n
 \end{equation}
 $$
 
-where $\Lambda^m_{\;\;n}(\mathbf{v})$ is this Lorentz transformation, $p^n$ is the four-momentum of a camera ray in the camera rest frame, and $p'^m$ is the four-momentum of the camera ray in the other local inertial frame. 
+where $\Lambda^m_{n}(\mathbf{v})$ is this Lorentz transformation, $p^n$ is the four-momentum of a camera ray in the camera rest frame, and $p'^m$ is the four-momentum of the camera ray in the other local inertial frame. 
 
-Then finally we use the inverse tetrads $e^{*\;\mu}_m$ to transform from the local inertial frame to the global frame:
+Then finally we use the inverse tetrads $e^{*\mu}_m$ to transform from the local inertial frame to the global frame:
 
 $$
 \begin{equation}
-    p^\mu = e^{*\;\mu}_m p'^m
+    p^\mu = e^{*\mu}_m p'^m
 \end{equation}
 $$
 
