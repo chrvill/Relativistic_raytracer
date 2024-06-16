@@ -592,5 +592,4 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/opt_random.h \
  C:/msys64/ucrt64/include/c++/13.1.0/bits/random.tcc \
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/Image.h \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h

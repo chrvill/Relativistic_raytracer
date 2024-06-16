@@ -84,11 +84,15 @@ void create_image(json& scene_file) {
     bool render_disk = scene_file["render_disk"];
     double error_tolerance = simulation_settings["error_tolerance"];
 
+    double r_inner_edge = scene_file["disk_parameters"]["radius_inner_edge"];
+    double r_outer_edge = scene_file["disk_parameters"]["radius_outer_edge"];
+    int n_voronoi_points = scene_file["disk_parameters"]["number_of_voronoi_points"];
+
     try {
         auto metric_pointer = create_metric(metric_name, metric_parameters);
         Metric& metric = *metric_pointer;
 
-        Disk disk(metric);
+        Disk disk(metric, n_voronoi_points, r_inner_edge, r_outer_edge);
 
         Scene scene(focal_length, image_width, image_height, fov, metric, disk, cie_filename, background_image_filename, render_disk, error_tolerance);
         scene.initialize(camera_v, camera_pos, camera_dir, up_vector);
