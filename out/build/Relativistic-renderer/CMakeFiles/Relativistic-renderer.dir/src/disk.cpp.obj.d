@@ -462,8 +462,6 @@ CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj: \
  D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/RealQZ.h \
  D:/Documents/Programs/Eigen/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
  C:/msys64/ucrt64/include/c++/13.1.0/iostream \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h \
  C:/msys64/ucrt64/include/c++/13.1.0/random \
  C:/msys64/ucrt64/include/c++/13.1.0/bits/random.h \
  C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/opt_random.h \
@@ -471,4 +469,6 @@ CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.1.0/numeric \
  C:/msys64/ucrt64/include/c++/13.1.0/bits/stl_numeric.h \
  C:/msys64/ucrt64/include/c++/13.1.0/pstl/glue_numeric_defs.h \
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/PerlinNoise.h \
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/metric.h

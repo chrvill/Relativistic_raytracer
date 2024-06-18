@@ -34,7 +34,8 @@
     },
     "simulation_settings": {
         "n_steps": 1000,
-        "initial_step_size": 0.1
+        "initial_step_size": 0.1,
+        "error_tolerance": 1e-5
     },
     "background": "backgrounds/starmap_2020_8k.png",
     "output_file": "renders/schwarzschild.png",

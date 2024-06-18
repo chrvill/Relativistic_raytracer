@@ -971,9 +971,9 @@ CMakeFiles/Relativistic-renderer.dir/src/disk.cpp.obj
  D:/Documents/Programs/Eigen/Eigen/src/plugins/CommonCwiseUnaryOps.h
  D:/Documents/Programs/Eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.h
  D:/Documents/Programs/Eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/PerlinNoise.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/metric.h
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h
 
 CMakeFiles/Relativistic-renderer.dir/src/kerr.cpp.obj
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/src/kerr.cpp
@@ -2503,7 +2503,6 @@ CMakeFiles/Relativistic-renderer.dir/src/main.cpp.obj
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/ordered_map.hpp
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley.hpp
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/schwarzschild.h
 
@@ -3493,7 +3492,6 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/colorCalculator.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/metric.h
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/scene.h
 
 CMakeFiles/Relativistic-renderer.dir/src/schwarzschild.cpp.obj

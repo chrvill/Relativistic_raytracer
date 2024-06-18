@@ -35,7 +35,8 @@
     },
     "simulation_settings": {
         "n_steps": "int: maximum number of steps to take in the simulation",
-        "initial_step_size": "double: The initial step size in the integration"
+        "initial_step_size": "double: The initial step size in the integration",
+        "error_tolerance": "double: The error tolerance for the integrator"
     },
     "background": "str: The path to the background image we want to use",
     "output_file": "str: The path to the output file we want to write to",

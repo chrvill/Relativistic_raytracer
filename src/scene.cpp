@@ -5,6 +5,7 @@
 #include <mutex>
 #include "Image.h"
 #include "metric.h"
+#include "disk.h"
 #include "colorCalculator.h"
 #include "scene.h"
 
@@ -90,10 +91,16 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
 
     Eigen::Matrix3d transformation = metric.transformationMatrix(r, theta, phi);
 
+    double max_color_value = 0.0;
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_real_distribution<double> dis(0.0, 1.0);
+
     #pragma omp parallel
     {
         int local_progress = 0;
-        
         #pragma omp for
         for (int j = 0; j < num_pixels; ++j)
         {   
@@ -123,17 +130,25 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
             bool outside_celestial_sphere = false;
             bool below_EH = false;
             bool inside_disk = false;
+
             double redshift = 1.0;
 
             Vector8d y = y0;
 
             double h = h0;
 
-            Eigen::Vector3d color(0.0, 0.0, 0.0);
+            double optical_depth = 0.0;
 
-            double T = 5000.0;
+            Eigen::Vector3d color(0.0, 0.0, 0.0);
+            Eigen::Vector4d u_observer(0.0, 0.0, 0.0, 0.0);
+
+            Eigen::Vector3d pos = metric.pos_to_cartesian(y(1), y(2), y(3));
+
+            double T = 4000.0;
             for (int i = 0; i < n_steps; ++i) {
                 y = metric.RKF45(y, h, error_tolerance);
+                
+                pos = metric.pos_to_cartesian(y(1), y(2), y(3));
 
                 affine_parameter += h;
                 
@@ -142,6 +157,59 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
                 if (break_integration) {
                     break;
                 }
+
+                if (render_disk) {
+                    if (y(1) <= disk.r_outer_edge and h > 0.1) {
+                        h = 0.1;
+                    }
+
+                    inside_disk = disk.inside_disk(y(1), y(2));
+
+                    if (inside_disk) {
+                        Eigen::Vector3d closest_point(0.0, 0.0, 0.0);
+                        double min_distance = 1e10;
+
+                        Eigen::Vector3d jitter(dis(gen), dis(gen), dis(gen));
+
+                        Eigen::Vector3d sample_pos = pos + jitter*h;
+
+                        Eigen::Vector3d point = disk.get2DRotation(sample_pos, std::sqrt(1.0 / std::pow(y(1) + 3, 2)) * -((metric.a < 0) ? -1 : 1) * 96, 10);
+                        for (int k = 0; k < disk.n_voronoi_points; ++k) {
+                            Eigen::Vector3d voronoi_point = disk.voronoi_points[k];
+                            double distance = (point - voronoi_point).norm();
+
+                            if (distance < min_distance) {
+                                min_distance = distance;
+                                closest_point = voronoi_point;
+                            }
+                        }
+
+                        std::vector<double> densities = disk.getDiskDensity(sample_pos, y(1), metric.a, closest_point, min_distance);
+                        double emission = densities[0];
+                        double absorption = densities[1];
+
+                        double u1_observer = 0.0;
+                        double u2_observer = 0.0;
+                        double u3_observer = metric.orbital_velocity(y(1));
+
+                        double u0_observer = metric.compute_p0(y(1), y(2), u1_observer, u2_observer, u3_observer, -1);
+                        u_observer << u0_observer, u1_observer, u2_observer, u3_observer;
+
+                        // We're computing the redshift of a photon emitted by the camera and received at the disk
+                        // so need to take the reciprocal to find the redshift of the photon emitted by the disk and received at the camera
+                        redshift = 1.0/metric.compute_redshift(y0, y, u_observer, camera_u);
+                        
+                        //color = colorCalculator.compute_blackbody_RGB(T/redshift)*(1 + densities[0])*std::pow(redshift, 5);
+                        optical_depth += h*absorption;
+                        Eigen::Vector3d raw_color = colorCalculator.compute_blackbody_RGB(T/redshift)*std::pow(redshift, 5);
+                        color += raw_color*emission*h*std::exp(-optical_depth);
+                        //if (optical_depth > 2) break;
+                    }
+                }
+            }
+
+            if (color.maxCoeff() > max_color_value) {
+                max_color_value = color.maxCoeff();
             }
 
             if (outside_celestial_sphere) 
@@ -156,7 +224,7 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
                 uv(0) = std::fmod(v_theta, M_PI)/M_PI;
                 uv(1) = std::fmod(v_phi, 2*M_PI)/(2*M_PI);
 
-                color = lookup_background(uv);
+                color += lookup_background(uv);
             }
 
             color = color.cwiseMax(0.0);
@@ -183,6 +251,13 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
     // Ensure the progress bar shows 100% at the end
     print_progress_bar(1.0);
     std::cout << std::endl;
+
+    #pragma omp parallel for
+    for (int i = 0; i < num_pixels; ++i) {
+        int index_x = i % image_width;
+        int index_y = i / image_width;
+        image(index_y, index_x) = image(index_y, index_x)/max_color_value;
+    }
 
     return image;
 }

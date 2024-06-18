@@ -482,8 +482,9 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: \
  C:/msys64/ucrt64/include/stdarg.h \
  C:/msys64/ucrt64/include/_mingw_stdarg.h \
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/metric.h \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/colorCalculator.h \
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
  C:/msys64/ucrt64/include/c++/13.1.0/iostream \
+ D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/colorCalculator.h \
  D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/cnpy.h \
  C:/msys64/ucrt64/include/zlib.h C:/msys64/ucrt64/include/zconf.h \
  C:/msys64/ucrt64/include/unistd.h C:/msys64/ucrt64/include/io.h \
@@ -519,6 +520,4 @@ CMakeFiles/Relativistic-renderer.dir/src/scene.cpp.obj: \
  C:/msys64/ucrt64/include/c++/13.1.0/random \
  C:/msys64/ucrt64/include/c++/13.1.0/bits/random.h \
  C:/msys64/ucrt64/include/c++/13.1.0/x86_64-w64-mingw32/bits/opt_random.h \
- C:/msys64/ucrt64/include/c++/13.1.0/bits/random.tcc \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/disk.h \
- D:/Documents/Programs/Physics/BlackHoles/Relativistic-renderer/include/perlin.h
+ C:/msys64/ucrt64/include/c++/13.1.0/bits/random.tcc
