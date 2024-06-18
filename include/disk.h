@@ -27,10 +27,10 @@ public:
 
     Eigen::Vector3d get2DRotation(const Eigen::Vector3d& A, double angle, double angular_displacement);
 
-    std::vector<double> getDiskDensity(const Eigen::Vector3d& sampleOrig, double r, double a, const Eigen::Vector3d& PosMin, double rmin);
+    std::vector<double> getDiskDensity(const Eigen::Vector3d& point, double r, double a, const Eigen::Vector3d& closest_point, double shortest_distance);
 
     bool inline inside_disk(double r, double theta) {
         double z = r * std::cos(theta);
-        return ((std::abs(z) <= 0.5) and (r >= r_inner_edge and r <= r_outer_edge));
+        return ((std::abs(z) <= r_outer_edge*std::tan(M_PI/25)) and (r >= r_inner_edge and r <= r_outer_edge));
     }
 };

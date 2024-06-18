@@ -93,6 +93,11 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
 
     double max_color_value = 0.0;
 
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_real_distribution<double> dis(0.0, 1.0);
+
     #pragma omp parallel
     {
         int local_progress = 0;
@@ -137,13 +142,13 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
             Eigen::Vector3d color(0.0, 0.0, 0.0);
             Eigen::Vector4d u_observer(0.0, 0.0, 0.0, 0.0);
 
-            double T = 5000.0;
+            Eigen::Vector3d pos = metric.pos_to_cartesian(y(1), y(2), y(3));
+
+            double T = 4000.0;
             for (int i = 0; i < n_steps; ++i) {
-                Eigen::Vector3d old_pos = metric.pos_to_cartesian(y(1), y(2), y(3));
-
                 y = metric.RKF45(y, h, error_tolerance);
-
-                Eigen::Vector3d new_pos = metric.pos_to_cartesian(y(1), y(2), y(3));
+                
+                pos = metric.pos_to_cartesian(y(1), y(2), y(3));
 
                 affine_parameter += h;
                 
@@ -161,15 +166,16 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
                     inside_disk = disk.inside_disk(y(1), y(2));
 
                     if (inside_disk) {
-                        double dl = (new_pos - old_pos).norm();
-
                         Eigen::Vector3d closest_point(0.0, 0.0, 0.0);
                         double min_distance = 1e10;
 
-                        Eigen::Vector3d point = disk.get2DRotation(new_pos, std::sqrt(1.0 / std::pow(y(1) + 3, 2)) * -((metric.a < 0) ? -1 : 1) * 96, 10);
+                        Eigen::Vector3d jitter(dis(gen), dis(gen), dis(gen));
+
+                        Eigen::Vector3d sample_pos = pos + jitter*h;
+
+                        Eigen::Vector3d point = disk.get2DRotation(sample_pos, std::sqrt(1.0 / std::pow(y(1) + 3, 2)) * -((metric.a < 0) ? -1 : 1) * 96, 10);
                         for (int k = 0; k < disk.n_voronoi_points; ++k) {
                             Eigen::Vector3d voronoi_point = disk.voronoi_points[k];
-                            //double distance = (new_pos - voronoi_point).norm();
                             double distance = (point - voronoi_point).norm();
 
                             if (distance < min_distance) {
@@ -178,7 +184,7 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
                             }
                         }
 
-                        std::vector<double> densities = disk.getDiskDensity(new_pos, y(1), metric.a, closest_point, min_distance);
+                        std::vector<double> densities = disk.getDiskDensity(sample_pos, y(1), metric.a, closest_point, min_distance);
                         double emission = densities[0];
                         double absorption = densities[1];
 
@@ -194,13 +200,10 @@ img::ImageRGBf Scene::simulate_camera_rays(int n_steps, double h0) {
                         redshift = 1.0/metric.compute_redshift(y0, y, u_observer, camera_u);
                         
                         //color = colorCalculator.compute_blackbody_RGB(T/redshift)*(1 + densities[0])*std::pow(redshift, 5);
-                        optical_depth += dl*absorption;
+                        optical_depth += h*absorption;
                         Eigen::Vector3d raw_color = colorCalculator.compute_blackbody_RGB(T/redshift)*std::pow(redshift, 5);
-                        color += raw_color*emission*dl*std::exp(-optical_depth);
-
-                        old_pos = new_pos;
-
-                        if (optical_depth > 1) break;
+                        color += raw_color*emission*h*std::exp(-optical_depth);
+                        //if (optical_depth > 2) break;
                     }
                 }
             }

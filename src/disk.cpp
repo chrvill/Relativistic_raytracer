@@ -60,39 +60,39 @@ void Disk::generate_voronoi_points(int n_points) {
     }
 }
 
-std::vector<double> Disk::getDiskDensity(const Eigen::Vector3d& sampleOrig, double r, double a, const Eigen::Vector3d& PosMin, double rmin) {
+std::vector<double> Disk::getDiskDensity(const Eigen::Vector3d& point, double r, double a, const Eigen::Vector3d& closest_point, double shortest_distance) {
     // Field Falloffs
     double innerFallOff = 1.0 / (1 + std::exp(-1 * (r - r_inner_edge)));
     double outerFallOff = 1.0 / (1 + std::exp(0.3 * (r - r_outer_edge)));
     double detailFallOff = 1.0 / (1 + std::exp(0.5 * (r - r_outer_edge)));
     
     // Initialize Coordinates
-    Eigen::Vector3d tC = get2DRotation(sampleOrig, std::sqrt(1.0 / std::pow(r + 3, 2)) * -((a < 0) ? -1 : 1) * 96, 10);
-    Eigen::Vector3d pC = (tC - PosMin) / 110.0;
+    Eigen::Vector3d tC = get2DRotation(point, std::sqrt(1.0 / std::pow(r + 3, 2)) * -((a < 0) ? -1 : 1) * 96, 10);
+    Eigen::Vector3d pC = (tC - closest_point) / 110.0;
     
     // Noise Field
-    double f1 = 1.0 / (1 + rmin);
+    double f1 = 1.0 / (1 + shortest_distance);
     double element0 = std::abs(hscript_turb(pC*56, 5, noise));
     double element1 = std::abs(hscript_turb(pC.cwiseProduct(Eigen::Vector3d(12, 12, 56)), 5, noise));
     double element2 = std::pow(f1, 1.5) * f1;
     double element3 = f1 * 0.005 * detailFallOff;
     double element4 = std::pow(std::abs(hscript_turb((pC + Eigen::Vector3d(2, 55, 32)).cwiseProduct(Eigen::Vector3d(12, 12, 56)), 5, noise)), 2) * 7;
-    double density = 2;
+    double density = 5;
     double EmissionField = ((((element0 + element1) / 2.0) * element2 * density) + element3) * outerFallOff;
     double AbsorptionField = ((((element0 + element1 + element4) / 3.0) * element2 * density) + element3) * outerFallOff;
 
     // Break-up upper and lower edge
-    Eigen::Vector3d adjustedSampleOrig = sampleOrig - Eigen::Vector3d(0, 0, innerFallOff * ((sampleOrig.z() < 0) ? -1 : 1));
-    double sampleAngle = std::asin((adjustedSampleOrig.normalized()).dot(Eigen::Vector3d(0, 0, ((sampleOrig.z() < 0) ? -1 : 1))));
+    Eigen::Vector3d adjustedSampleOrig = point - Eigen::Vector3d(0, 0, innerFallOff * ((point.z() < 0) ? -1 : 1));
+    double sampleAngle = std::asin((adjustedSampleOrig.normalized()).dot(Eigen::Vector3d(0, 0, ((point.z() < 0) ? -1 : 1))));
 
-    double diskSlope = M_PI / 25; 
+    double diskSlope = M_PI / 50; 
     double slopeNoise = EmissionField * 5;
     diskSlope += slopeNoise;
     
     // In-Exact Bounds test
     if (sampleAngle < diskSlope) {
         // Calculate smooth vertical gradient
-        double x = std::abs(sampleOrig.z());
+        double x = std::abs(point.z());
         double h = std::tan(diskSlope) * r;
         double A = 2; // Gradient Amplitude
         double N_0 = 2.7; // First Power
