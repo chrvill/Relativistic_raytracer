@@ -36,13 +36,14 @@ public:
     void readFile(const std::string& filename);
 
     // Compute the blackbody distribution for a given temperature and the range of wavelengths
-    inline Array1000d blackbody_distribution(double T, const Array1000d& lambdas);
+    inline Array1000d blackbody_distribution(double T, const Array1000d& lambdas) {
+        return 1.0 / (lambdas.cube() * lambdas.square())
+            * 1.0 / (exp((h * c) / (lambdas * k_B * T)) - 1.0);
+    }   
 
     // Compute the XYZ values for a given temperature
     Eigen::Vector3d compute_blackbody_XYZ(double T);
 
     // Compute the RGB color for a given temperature
     Eigen::Vector3d compute_blackbody_RGB(double T);
-
-
 };

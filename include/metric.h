@@ -77,7 +77,7 @@ public:
 
     // Conditions for breaking the integration
     virtual inline bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
-        outside_celestial_sphere = y(1) >= 100.0;
+        outside_celestial_sphere = y(1) >= 500.0;
 
         return outside_celestial_sphere;
     }
@@ -96,7 +96,7 @@ public:
 
     Eigen::Vector3d transform_cartesian_vec(const Eigen::Vector3d& vec, double r, double theta, double phi);
 
-    Eigen::Vector3d transform_vec_to_cartesian(const Eigen::Vector3d& vec, double r, double theta, double phi);
+    virtual Eigen::Vector3d transform_vec_to_cartesian(const Eigen::Vector3d& vec, double r, double theta, double phi);
     // Compute the redshift of a photon emitted at a position and with a momentum given by initial_y and received at a position and with a momentum given by final_y
     // The four-velocities of the emitter and receiver are given by u_emitter and u_observer, respectively
     double compute_redshift(const Vector8d& initial_y, const Vector8d& final_y, 
@@ -107,7 +107,7 @@ public:
 
     Eigen::Matrix4d lorentz_transformation(const Eigen::Vector3d& v);
 
-    virtual Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
+    virtual Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector4d& u, double r, double theta, double phi);
 
     virtual Eigen::Vector4d transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi);
 };

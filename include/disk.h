@@ -3,6 +3,7 @@
 #include <Eigen/Dense>
 #include <iostream>
 #include <cmath>
+#include <random>
 #include "metric.h"
 
 class Disk {

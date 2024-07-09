@@ -58,11 +58,6 @@ void ColorCalculator::readFile(const std::string& filename) {
     z_bar_eigen = Eigen::Map<const Eigen::Array<double, 1000, 1>>(z_bar.data());
 }
 
-inline Array1000d ColorCalculator::blackbody_distribution(double T, const Array1000d& lambdas) {
-    return 1.0 / (lambdas.cube() * lambdas.square())
-         * 1.0 / (exp((h * c) / (lambdas * k_B * T)) - 1.0);
-}
-
 Eigen::Vector3d ColorCalculator::compute_blackbody_XYZ(double T) {
     Array1000d I = blackbody_distribution(T, lambdas_eigen*1e-9);
 

@@ -135,9 +135,9 @@ Eigen::Vector3d Metric::transform_vec_to_cartesian(const Eigen::Vector3d& vec, d
 
     Eigen::Vector3d new_vec(vec(0), vec(1), vec(2));
 
-    new_vec(0) *= std::sqrt(g_rr(r, theta));
-    new_vec(1) *= std::sqrt(g_thth(r, theta));
-    new_vec(2) *= std::sqrt(g_phph(r, theta));
+    //new_vec(0) *= std::sqrt(g_rr(r, theta));
+    //new_vec(1) *= std::sqrt(g_thth(r, theta));
+    //new_vec(2) *= std::sqrt(g_phph(r, theta));
 
     return M.transpose() * new_vec;
 }
@@ -211,12 +211,29 @@ Eigen::Matrix4d Metric::lorentz_transformation(const Eigen::Vector3d& v) {
     return L;
 }
 
-Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta) {
-    double gamma = compute_p0(r, theta, v(0), v(1), v(2), -1);
+Eigen::Vector3d Metric::compute_local_cartesian_velocity(const Eigen::Vector4d& u, double r, double theta, double phi) {
+    //double gamma = compute_p0(r, theta, u(0), u(1), u(2), -1);
     
-    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(v, r, theta, 0.0);
+    /*
+    double sigma = Sigma(r, theta);
+    double delta = Delta(r, theta);
+    double lambda = Lambda(r, theta);
 
-    return v_cartesian/gamma;
+    double u0 = std::sqrt(delta*sigma/lambda)*u(0);
+    double u1 = std::sqrt(sigma/delta)*u(1);
+    double u2 = std::sqrt(sigma)*u(2);
+    double u3 = -2.0*a*r*std::sin(theta)/std::sqrt(lambda*sigma)*u(0) + std::sin(theta)*std::sqrt(lambda/sigma)*u(3);
+
+    Eigen::Vector3d v_BL(u1/u0, u2/u0, u3/u0);
+    */
+
+    double u1 = u(1)/std::sqrt(g_rr(r, theta));
+    double u2 = u(2)/std::sqrt(g_thth(r, theta));
+    double u3 = u(3)/std::sqrt(g_phph(r, theta));
+
+    Eigen::Vector3d v_cartesian = transform_vec_to_cartesian(Eigen::Vector3d(u1, u2, u3), r, theta, phi);
+
+    return v_cartesian/u(0);
 }
 
 Eigen::Vector4d Metric::transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi) {
