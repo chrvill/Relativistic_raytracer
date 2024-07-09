@@ -31,7 +31,7 @@ public:
 
     inline bool break_integration(const Vector8d& y, bool &outside_celestial_sphere, bool &below_EH) {
         below_EH = y(1) <= 1.01*r_EH;
-        outside_celestial_sphere = y(1) >= 100.0;
+        outside_celestial_sphere = y(1) >= 500.0;
         //inside_disk = (std::abs(z) <= 0.1) and (y(1) >= 5.0) and (y(1) <= 10.0);
 
         return (outside_celestial_sphere or below_EH);
@@ -43,7 +43,9 @@ public:
 
     Eigen::Matrix3d transformationMatrix(double r, double theta, double phi);
 
-    Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector3d& v, double r, double theta);
-    
+    Eigen::Vector3d transform_vec_to_cartesian(const Eigen::Vector3d& vec, double r, double theta, double phi);
+
+    Eigen::Vector3d compute_local_cartesian_velocity(const Eigen::Vector4d& u, double r, double theta, double phi);
+
     Eigen::Vector4d transform_vec_to_global(const Eigen::Vector4d& vec, double r, double theta, double phi);
 };

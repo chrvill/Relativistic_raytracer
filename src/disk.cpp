@@ -67,16 +67,17 @@ std::vector<double> Disk::getDiskDensity(const Eigen::Vector3d& point, double r,
     double detailFallOff = 1.0 / (1 + std::exp(0.5 * (r - r_outer_edge)));
     
     // Initialize Coordinates
-    Eigen::Vector3d tC = get2DRotation(point, std::sqrt(1.0 / std::pow(r + 3, 2)) * -((a < 0) ? -1 : 1) * 96, 10);
+    Eigen::Vector3d tC = get2DRotation(point, std::sqrt(1.0 / std::pow(r + 3, 2)) * ((a < 0) ? -1 : 1) * 96, 10);
     Eigen::Vector3d pC = (tC - closest_point) / 110.0;
     
-    // Noise Field
+    // Noise Field 
     double f1 = 1.0 / (1 + shortest_distance);
     double element0 = std::abs(hscript_turb(pC*56, 5, noise));
     double element1 = std::abs(hscript_turb(pC.cwiseProduct(Eigen::Vector3d(12, 12, 56)), 5, noise));
     double element2 = std::pow(f1, 1.5) * f1;
     double element3 = f1 * 0.005 * detailFallOff;
     double element4 = std::pow(std::abs(hscript_turb((pC + Eigen::Vector3d(2, 55, 32)).cwiseProduct(Eigen::Vector3d(12, 12, 56)), 5, noise)), 2) * 7;
+        
     double density = 5;
     double EmissionField = ((((element0 + element1) / 2.0) * element2 * density) + element3) * outerFallOff;
     double AbsorptionField = ((((element0 + element1 + element4) / 3.0) * element2 * density) + element3) * outerFallOff;
@@ -106,7 +107,6 @@ std::vector<double> Disk::getDiskDensity(const Eigen::Vector3d& point, double r,
             
             // Absorption Falloff
             double absFalloff = 1 + (10.0 / (1 + std::exp(-0.2 * (r - r_outer_edge))));
-            //std::cout << EmissionField * gx << "\n";
             return {EmissionField * gx, std::pow(AbsorptionField, 1.3) * gx * absFalloff * 3};
         } else {
             return {0.0, 0.0};

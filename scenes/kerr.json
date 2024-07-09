@@ -2,12 +2,12 @@
     "camera": {
         "properties": {
             "focal_length": 1,
-            "image_width": 1000,
+            "image_width": 1500,
             "image_height": 1000,
             "fov": 0.7853981633974483
         },
         "position": {
-            "r": 70.0,
+            "r": 70,
             "theta": 1.2707963267948966,
             "phi": 1.5707963267948966
         },
@@ -30,7 +30,7 @@
     "metric": {
         "name": "Kerr",
         "parameters": {
-            "a": 1
+            "a": 0.0
         }
     },
     "simulation_settings": {

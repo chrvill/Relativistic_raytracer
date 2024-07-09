@@ -20,6 +20,7 @@
 
 using json = nlohmann::json;
 
+// Reading the scene file
 json read_json(const std::string& scene_filename) {
     FILE* scene_file = std::fopen(scene_filename.c_str(), "r");
     char buffer[1024];
@@ -35,6 +36,7 @@ json read_json(const std::string& scene_filename) {
     return data;
 }
 
+// Creating the metric object from the name of the metric
 std::unique_ptr<Metric> create_metric(const std::string& metric_name, const json& metric_parameters) {
     if (metric_name == "Kerr") {
         double a = metric_parameters["a"];
@@ -51,6 +53,7 @@ std::unique_ptr<Metric> create_metric(const std::string& metric_name, const json
     }
 }
 
+// Creating the image from the scene file and the simulated camera rays
 void create_image(json& scene_file) {
     auto camera = scene_file["camera"];
     auto cam_pos = camera["position"];
@@ -84,9 +87,15 @@ void create_image(json& scene_file) {
     bool render_disk = scene_file["render_disk"];
     double error_tolerance = simulation_settings["error_tolerance"];
 
-    double r_inner_edge = scene_file["disk_parameters"]["radius_inner_edge"];
-    double r_outer_edge = scene_file["disk_parameters"]["radius_outer_edge"];
-    int n_voronoi_points = scene_file["disk_parameters"]["number_of_voronoi_points"];
+    double r_inner_edge;
+    double r_outer_edge;
+    int n_voronoi_points;
+
+    if (render_disk) {
+        r_inner_edge = scene_file["disk_parameters"]["radius_inner_edge"];
+        r_outer_edge = scene_file["disk_parameters"]["radius_outer_edge"];
+        n_voronoi_points = scene_file["disk_parameters"]["number_of_voronoi_points"];
+    }
 
     try {
         auto metric_pointer = create_metric(metric_name, metric_parameters);
